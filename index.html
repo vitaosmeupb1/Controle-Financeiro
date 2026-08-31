@@ -146,7 +146,7 @@
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; opacity: 0.5;}
         ::-webkit-scrollbar-thumb:hover { background: var(--warning); }
 
-        /* --- Login Box --- */
+        /* --- Login Box - Oculto por padrão para evitar piscar --- */
         #auth-container { position: fixed; inset: 0; background: url('photo1.jpg') center/cover fixed no-repeat, var(--bg-gradient); z-index: 2000; display: none; justify-content: center; align-items: center; }
         .auth-box { background: var(--bg-panel); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); padding: 3rem 2.5rem; border: 1px solid var(--border); box-shadow: var(--shadow-lg); width: 100%; max-width: 420px; border-radius: 16px; }
         .auth-box h2 { font-size: 1.6rem; font-weight: 900; margin-bottom: 2rem; border-bottom: 3px solid var(--primary); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px; text-shadow: var(--brand-glow);}
@@ -165,13 +165,14 @@
 
         header { background: var(--header-bg); backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
         
-        .brand { font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; color: var(--text-main); text-shadow: var(--brand-glow); text-transform: uppercase; letter-spacing: 1px; cursor: pointer; user-select: none;}
+        .brand { font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; color: var(--text-main); text-shadow: var(--brand-glow); text-transform: uppercase; letter-spacing: 1px;}
         .brand i { color: var(--kpi-saldo-color); font-size: 1.8rem; filter: drop-shadow(0 0 8px var(--kpi-saldo-color)); margin-right: 10px;}
         
+        /* Botão da Garagem agora está ancorado junto ao título, removi a margem à direita excessiva */
         .btn-header-link { background: linear-gradient(90deg, var(--primary) 0%, var(--warning) 100%); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 900; font-size: 0.85rem; margin-left: 20px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; transition: 0.3s; border: none; box-shadow: 0 4px 15px rgba(255, 42, 147, 0.4); }
         .btn-header-link:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 42, 147, 0.6); }
 
-        .top-actions { display: flex; align-items: center; gap: 0.8rem; transition: 0.3s ease;}
+        .top-actions { display: flex; align-items: center; gap: 0.8rem; }
         .select-sm { padding: 0.5rem 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; background: var(--input-bg); color: var(--text-main); cursor: pointer; font-weight: 700; text-transform: uppercase;}
         .select-sm option { background: var(--bg-panel-solid); }
         
@@ -181,9 +182,6 @@
         .btn-icon-text { background: var(--btn-act-bg); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: var(--text-main); transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px;}
         .btn-icon-text:hover { background: var(--btn-act-hover); border-color: var(--primary); color: var(--primary); }
         .btn-logout:hover { border-color: var(--danger); color: var(--danger); background: rgba(225, 29, 72, 0.1);}
-
-        /* Icone do Menu Mobile (Oculto no Desktop) */
-        .mobile-menu-btn { display: none; background: none; border: none; color: var(--primary); font-size: 2.2rem; cursor: pointer; filter: drop-shadow(0 0 5px var(--primary));}
 
         .nav-tabs { background: var(--nav-tab-bg); border-bottom: 1px solid var(--border); padding: 0 1.5rem; display: flex; overflow-x: auto; scrollbar-width: thin; backdrop-filter: var(--glass-blur); }
         .nav-tab { padding: 1rem 1.5rem; cursor: pointer; font-weight: 800; color: var(--text-sec); border-bottom: 4px solid transparent; white-space: nowrap; font-size: 0.95rem; transition: 0.2s; text-transform: uppercase; letter-spacing: 1px;}
@@ -272,6 +270,10 @@
 
         /* TAGS DE RESPONSÁVEL */
         .resp-badge { font-size: 0.65rem; padding: 2px 8px; border-radius: 6px; font-weight: 800; border: 1px solid var(--border-light); margin-left: 6px; display: inline-block; white-space: nowrap; text-transform: uppercase; }
+        .resp-vitor { background: rgba(2, 132, 199, 0.1); color: #0284c7; border-color: rgba(2, 132, 199, 0.3); }
+        .resp-beatriz { background: rgba(219, 39, 119, 0.1); color: #db2777; border-color: rgba(219, 39, 119, 0.3); }
+        [data-theme="dark"] .resp-vitor { background: rgba(0, 243, 255, 0.15); color: #00f3ff; border-color: rgba(0, 243, 255, 0.3);}
+        [data-theme="dark"] .resp-beatriz { background: rgba(255, 42, 147, 0.15); color: #ff2a93; border-color: rgba(255, 42, 147, 0.3);}
 
         .curr-wrap { display: flex; justify-content: space-between; align-items: center; width: 100%; min-width: 85px; }
         .curr-sym { font-size: 0.7rem; font-weight: 800; opacity: 0.6; user-select: none; margin-right: 4px;}
@@ -282,6 +284,7 @@
         .txt-eco { color: var(--success); text-shadow: var(--val-inc-glow); }
         .txt-zero { color: var(--text-sec); opacity: 0.5; }
 
+        /* REGRAS DE OCULTAÇÃO (VISÃO GERAL E FECHAMENTO DE MÊS) */
         body.view-all .col-actions,
         body.view-all .col-drag { display: none !important; }
 
@@ -392,136 +395,15 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
-        /* ==========================================================
-           MODO MOBILE (Aplicativo Responsivo)
-           ========================================================== */
-        
-        /* Backdrop do Menu Lateral */
-        .mobile-sidebar-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 3999;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .mobile-sidebar-backdrop.open {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Menu Lateral Estilo Gaveta (Sidebar) */
-        .mobile-sidebar {
-            position: fixed;
-            top: 0;
-            left: -320px; 
-            width: 280px;
-            max-width: 80vw;
-            height: 100vh;
-            background: var(--bg-panel-solid);
-            z-index: 4000;
-            box-shadow: var(--shadow-lg);
-            transition: left 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            padding: 1.5rem;
-            gap: 1.5rem;
-            border-right: 2px solid var(--primary);
-            overflow-y: auto;
-        }
-        .mobile-sidebar.open {
-            left: 0;
-        }
-        .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 1rem;
-        }
-        .sidebar-header h3 {
-            color: var(--primary);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: var(--brand-glow);
-        }
-
-        /* Classes ativadas quando body possui a classe 'mobile-mode' */
-        body.mobile-mode header {
-            justify-content: flex-start;
-            gap: 15px;
-        }
-        body.mobile-mode .mobile-menu-btn {
-            display: block; /* Mostra o icone de hamburger no topo */
-        }
-        body.mobile-mode .brand {
-            margin: 0 auto; /* Centraliza a logo no topo */
-        }
-        body.mobile-mode #user-display {
-            display: none; /* Esconde o nome do usuario na logo para poupar espaço */
-        }
-        
-        /* Comportamento dos botões quando movidos para a Sidebar */
-        body.mobile-mode .top-actions {
-            flex-direction: column;
-            align-items: stretch;
-            width: 100%;
-            gap: 15px;
-        }
-        body.mobile-mode .btn-icon-text, 
-        body.mobile-mode .btn-header-link {
-            width: 100%;
-            justify-content: flex-start;
-            padding: 1rem;
-            margin: 0;
-            font-size: 0.95rem;
-        }
-        body.mobile-mode .select-sm {
-            width: 100%;
-            padding: 1rem;
-            font-size: 0.95rem;
-        }
-
-        /* Ajustes no Workspace (Corpo do App) */
-        body.mobile-mode .kpi-grid {
-            grid-template-columns: 1fr; /* Força 1 coluna para KPIs */
-        }
-        body.mobile-mode .view-filters {
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-        body.mobile-mode .btn-filter {
-            flex: 1 1 40%;
-            text-align: center;
-            padding: 0.8rem;
-            border-bottom: 1px solid var(--border);
-        }
-        body.mobile-mode .toolbar-actions {
-            flex-wrap: wrap;
-            width: 100%;
-            justify-content: space-between;
-        }
-        body.mobile-mode .btn-add {
-            flex: 1;
-            justify-content: center;
-            padding: 0.8rem;
-        }
-        body.mobile-mode .saas-table th, 
-        body.mobile-mode .saas-table td {
-            white-space: nowrap; /* Impede cortes e quebras forçadas em telas pequenas */
-        }
     </style>
 </head>
 <body data-theme="dark" class="view-all">
 
     <div id="gta-loader">
         <div class="loader-content">
+            <!-- AQUI FICA A TAG DO GIF -->
             <img src="gta-loading.gif" alt="Carregando..." class="gta-gif">
+            
             <h2 class="loader-text">CARREGANDO DADOS...</h2>
             <div class="loader-tips">DICA: Carregando banco de dados de Leonida...</div>
         </div>
@@ -536,27 +418,17 @@
         </div>
     </div>
 
-    <!-- Módulo Sidebar Mobile -->
-    <div class="mobile-sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
-    <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="sidebar-header">
-            <h3>Menu Principal</h3>
-            <button class="btn-act danger" onclick="toggleSidebar()"><i class="ph-bold ph-x"></i></button>
-        </div>
-        <!-- O container topActions Container migrará para cá dinamicamente -->
-        <div id="sidebarContent" style="display: flex; flex-direction: column; width: 100%;"></div>
-    </div>
-
     <div id="app-container">
         <header>
-            <button class="mobile-menu-btn" onclick="toggleSidebar()"><i class="ph-bold ph-list"></i></button>
-            <div class="brand" ondblclick="toggleMobileMode()" title="Duplo clique para Modo Mobile">
-                <i class="ph-fill ph-palm-tree" style="color: var(--kpi-saldo-color);"></i> VICE <span style="color: var(--primary);">FINANCE</span> 
-                <span id="user-display" style="font-weight: 600; font-size: 0.8rem; color: var(--text-sec); margin-left: 10px; letter-spacing: normal; text-shadow: none; text-transform: none;">...</span>
-            </div>
-            <div class="top-actions" id="topActionsContainer">
+            <div class="brand">
+                <div style="display: flex; align-items: center;">
+                    <i class="ph-fill ph-palm-tree" style="color: var(--kpi-saldo-color);"></i> VICE <span style="color: var(--primary);">FINANCE</span> 
+                    <span id="user-display" style="font-weight: 600; font-size: 0.8rem; color: var(--text-sec); margin-left: 10px; letter-spacing: normal; text-shadow: none; text-transform: none;">...</span>
+                </div>
                 <button class="btn-header-link" onclick="goToGaragem()" title="Ir para a Garagem"><i class="ph-bold ph-car-profile" style="font-size: 1.2rem;"></i> GARAGEM</button>
-                
+            </div>
+            
+            <div class="top-actions">
                 <select id="respSelect" class="select-sm resp-select" title="Filtrar por Responsável">
                     <option value="Todos">Todos</option>
                 </select>
@@ -924,6 +796,7 @@
         window.currentChartTab = 'month';
         window.isNavigating = false; 
 
+        // Lógica para carregar frases externas
         let systemTips = [
             "Em Leonida, o dinheiro fala mais alto que as armas. Quase sempre.",
             "Mantenha a revisão da sua MT-03 em dia para evitar surpresas nas fugas por Leonida."
@@ -961,47 +834,6 @@
                 bg: `hsla(${hue}, 100%, 65%, 0.15)`
             };
         }
-
-        // ================= FUNÇÕES DO MODO MOBILE =================
-        window.toggleMobileMode = () => {
-            document.body.classList.toggle('mobile-mode');
-            const isMobile = document.body.classList.contains('mobile-mode');
-            const topActions = document.getElementById('topActionsContainer');
-            const sidebarContent = document.getElementById('sidebarContent');
-            const header = document.querySelector('header');
-            
-            if (isMobile) {
-                sidebarContent.appendChild(topActions);
-                localStorage.setItem('viceFinanceMobile', 'true');
-            } else {
-                header.appendChild(topActions);
-                localStorage.setItem('viceFinanceMobile', 'false');
-                
-                // Se desativar modo mobile, fecha o sidebar caso esteja aberto
-                document.getElementById('mobileSidebar').classList.remove('open');
-                document.getElementById('sidebarBackdrop').style.display = 'none';
-            }
-        };
-
-        window.toggleSidebar = () => {
-            document.getElementById('mobileSidebar').classList.toggle('open');
-            const backdrop = document.getElementById('sidebarBackdrop');
-            if(backdrop.classList.contains('open')) {
-                backdrop.classList.remove('open');
-                setTimeout(() => backdrop.style.display = 'none', 300);
-            } else {
-                backdrop.style.display = 'block';
-                setTimeout(() => backdrop.classList.add('open'), 10);
-            }
-        };
-
-        // Verifica estado mobile ao carregar
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('viceFinanceMobile') === 'true') {
-                toggleMobileMode();
-            }
-        });
-        // ==========================================================
 
         window.goToGaragem = () => {
             window.isNavigating = true; 
