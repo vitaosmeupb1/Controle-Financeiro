@@ -146,7 +146,7 @@
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; opacity: 0.5;}
         ::-webkit-scrollbar-thumb:hover { background: var(--warning); }
 
-        /* --- Login Box --- */
+        /* --- Login Box - Oculto por padrão para evitar piscar --- */
         #auth-container { position: fixed; inset: 0; background: url('photo1.jpg') center/cover fixed no-repeat, var(--bg-gradient); z-index: 2000; display: none; justify-content: center; align-items: center; }
         .auth-box { background: var(--bg-panel); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); padding: 3rem 2.5rem; border: 1px solid var(--border); box-shadow: var(--shadow-lg); width: 100%; max-width: 420px; border-radius: 16px; }
         .auth-box h2 { font-size: 1.6rem; font-weight: 900; margin-bottom: 2rem; border-bottom: 3px solid var(--primary); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px; text-shadow: var(--brand-glow);}
@@ -168,6 +168,7 @@
         .brand { font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; color: var(--text-main); text-shadow: var(--brand-glow); text-transform: uppercase; letter-spacing: 1px;}
         .brand i { color: var(--kpi-saldo-color); font-size: 1.8rem; filter: drop-shadow(0 0 8px var(--kpi-saldo-color)); margin-right: 10px;}
         
+        /* Botão da Garagem agora está ancorado junto ao título, removi a margem à direita excessiva */
         .btn-header-link { background: linear-gradient(90deg, var(--primary) 0%, var(--warning) 100%); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 900; font-size: 0.85rem; margin-left: 20px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; transition: 0.3s; border: none; box-shadow: 0 4px 15px rgba(255, 42, 147, 0.4); }
         .btn-header-link:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 42, 147, 0.6); }
 
@@ -269,6 +270,10 @@
 
         /* TAGS DE RESPONSÁVEL */
         .resp-badge { font-size: 0.65rem; padding: 2px 8px; border-radius: 6px; font-weight: 800; border: 1px solid var(--border-light); margin-left: 6px; display: inline-block; white-space: nowrap; text-transform: uppercase; }
+        .resp-vitor { background: rgba(2, 132, 199, 0.1); color: #0284c7; border-color: rgba(2, 132, 199, 0.3); }
+        .resp-beatriz { background: rgba(219, 39, 119, 0.1); color: #db2777; border-color: rgba(219, 39, 119, 0.3); }
+        [data-theme="dark"] .resp-vitor { background: rgba(0, 243, 255, 0.15); color: #00f3ff; border-color: rgba(0, 243, 255, 0.3);}
+        [data-theme="dark"] .resp-beatriz { background: rgba(255, 42, 147, 0.15); color: #ff2a93; border-color: rgba(255, 42, 147, 0.3);}
 
         .curr-wrap { display: flex; justify-content: space-between; align-items: center; width: 100%; min-width: 85px; }
         .curr-sym { font-size: 0.7rem; font-weight: 800; opacity: 0.6; user-select: none; margin-right: 4px;}
@@ -396,7 +401,9 @@
 
     <div id="gta-loader">
         <div class="loader-content">
+            <!-- AQUI FICA A TAG DO GIF -->
             <img src="gta-loading.gif" alt="Carregando..." class="gta-gif">
+            
             <h2 class="loader-text">CARREGANDO DADOS...</h2>
             <div class="loader-tips">DICA: Carregando banco de dados de Leonida...</div>
         </div>
@@ -414,12 +421,14 @@
     <div id="app-container">
         <header>
             <div class="brand">
-                <i class="ph-fill ph-palm-tree" style="color: var(--kpi-saldo-color);"></i> VICE <span style="color: var(--primary);">FINANCE</span> 
-                <span id="user-display" style="font-weight: 600; font-size: 0.8rem; color: var(--text-sec); margin-left: 10px; letter-spacing: normal; text-shadow: none; text-transform: none;">...</span>
-            </div>
-            <div class="top-actions">
+                <div style="display: flex; align-items: center;">
+                    <i class="ph-fill ph-palm-tree" style="color: var(--kpi-saldo-color);"></i> VICE <span style="color: var(--primary);">FINANCE</span> 
+                    <span id="user-display" style="font-weight: 600; font-size: 0.8rem; color: var(--text-sec); margin-left: 10px; letter-spacing: normal; text-shadow: none; text-transform: none;">...</span>
+                </div>
                 <button class="btn-header-link" onclick="goToGaragem()" title="Ir para a Garagem"><i class="ph-bold ph-car-profile" style="font-size: 1.2rem;"></i> GARAGEM</button>
-                
+            </div>
+            
+            <div class="top-actions">
                 <select id="respSelect" class="select-sm resp-select" title="Filtrar por Responsável">
                     <option value="Todos">Todos</option>
                 </select>
@@ -431,7 +440,7 @@
                 <button class="btn-icon-text" id="btnImport" onclick="copyPreviousMonth()"><i class="ph-bold ph-copy"></i> Importar</button>
                 <button class="btn-icon-text" onclick="openSettingsModal()"><i class="ph-bold ph-gear"></i> Ajustes</button>
                 <button class="btn-icon-text" onclick="openProfileModal()"><i class="ph-bold ph-user-circle"></i> Perfil</button>
-                <button class="btn-icon-text btn-logout" onclick="logout()"><i class="ph-bold ph-sign-out"></i> SAIR</button>
+                <button class="btn-icon-text btn-logout" onclick="logout()"><i class="ph-bold ph-sign-out"></i> Sair</button>
             </div>
         </header>
 
