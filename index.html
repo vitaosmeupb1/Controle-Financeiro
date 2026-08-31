@@ -146,7 +146,7 @@
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; opacity: 0.5;}
         ::-webkit-scrollbar-thumb:hover { background: var(--warning); }
 
-        /* --- Login Box - Oculto por padrão para evitar piscar --- */
+        /* --- Login Box --- */
         #auth-container { position: fixed; inset: 0; background: url('photo1.jpg') center/cover fixed no-repeat, var(--bg-gradient); z-index: 2000; display: none; justify-content: center; align-items: center; }
         .auth-box { background: var(--bg-panel); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); padding: 3rem 2.5rem; border: 1px solid var(--border); box-shadow: var(--shadow-lg); width: 100%; max-width: 420px; border-radius: 16px; }
         .auth-box h2 { font-size: 1.6rem; font-weight: 900; margin-bottom: 2rem; border-bottom: 3px solid var(--primary); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px; text-shadow: var(--brand-glow);}
@@ -160,27 +160,25 @@
         .btn-primary { background: linear-gradient(90deg, var(--primary) 0%, var(--warning) 100%); color: white; width: 100%; box-shadow: var(--btn-primary-shadow); font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem;}
         .btn-primary:hover { filter: brightness(1.15); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255, 42, 147, 0.5); }
 
-        /* --- Layout Desktop (Ajustado para Responsividade no Celular/Desktop Mode) --- */
+        /* --- Layout Desktop --- */
         #app-container { display: none; flex-direction: column; height: 100%; }
 
-        header { background: var(--header-bg); backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; flex-wrap: wrap; gap: 15px; }
+        header { background: var(--header-bg); backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
         
-        .brand { font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; color: var(--text-main); text-shadow: var(--brand-glow); text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0; white-space: nowrap; }
+        .brand { font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; color: var(--text-main); text-shadow: var(--brand-glow); text-transform: uppercase; letter-spacing: 1px;}
         .brand i { color: var(--kpi-saldo-color); font-size: 1.8rem; filter: drop-shadow(0 0 8px var(--kpi-saldo-color)); margin-right: 10px;}
         
-        /* Botão da Garagem Realocado com Margem Direita e Proteção contra encolhimento */
-        .btn-header-link { background: linear-gradient(90deg, var(--primary) 0%, var(--warning) 100%); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 900; font-size: 0.85rem; margin-right: 1.5rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; transition: 0.3s; border: none; box-shadow: 0 4px 15px rgba(255, 42, 147, 0.4); flex-shrink: 0; white-space: nowrap; }
+        .btn-header-link { background: linear-gradient(90deg, var(--primary) 0%, var(--warning) 100%); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 900; font-size: 0.85rem; margin-left: 20px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; transition: 0.3s; border: none; box-shadow: 0 4px 15px rgba(255, 42, 147, 0.4); }
         .btn-header-link:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 42, 147, 0.6); }
 
-        .top-actions { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; justify-content: flex-end; flex: 1; }
-        
-        .select-sm { padding: 0.5rem 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; background: var(--input-bg); color: var(--text-main); cursor: pointer; font-weight: 700; text-transform: uppercase; flex-shrink: 0; white-space: nowrap; }
+        .top-actions { display: flex; align-items: center; gap: 0.8rem; }
+        .select-sm { padding: 0.5rem 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; background: var(--input-bg); color: var(--text-main); cursor: pointer; font-weight: 700; text-transform: uppercase;}
         .select-sm option { background: var(--bg-panel-solid); }
         
         .resp-select { border-color: var(--primary); color: var(--primary); background: rgba(219, 39, 119, 0.05); }
         [data-theme="dark"] .resp-select { background: rgba(255, 42, 147, 0.1); }
 
-        .btn-icon-text { background: var(--btn-act-bg); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: var(--text-main); transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; white-space: nowrap; }
+        .btn-icon-text { background: var(--btn-act-bg); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: var(--text-main); transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px;}
         .btn-icon-text:hover { background: var(--btn-act-hover); border-color: var(--primary); color: var(--primary); }
         .btn-logout:hover { border-color: var(--danger); color: var(--danger); background: rgba(225, 29, 72, 0.1);}
 
@@ -271,10 +269,6 @@
 
         /* TAGS DE RESPONSÁVEL */
         .resp-badge { font-size: 0.65rem; padding: 2px 8px; border-radius: 6px; font-weight: 800; border: 1px solid var(--border-light); margin-left: 6px; display: inline-block; white-space: nowrap; text-transform: uppercase; }
-        .resp-vitor { background: rgba(2, 132, 199, 0.1); color: #0284c7; border-color: rgba(2, 132, 199, 0.3); }
-        .resp-beatriz { background: rgba(219, 39, 119, 0.1); color: #db2777; border-color: rgba(219, 39, 119, 0.3); }
-        [data-theme="dark"] .resp-vitor { background: rgba(0, 243, 255, 0.15); color: #00f3ff; border-color: rgba(0, 243, 255, 0.3);}
-        [data-theme="dark"] .resp-beatriz { background: rgba(255, 42, 147, 0.15); color: #ff2a93; border-color: rgba(255, 42, 147, 0.3);}
 
         .curr-wrap { display: flex; justify-content: space-between; align-items: center; width: 100%; min-width: 85px; }
         .curr-sym { font-size: 0.7rem; font-weight: 800; opacity: 0.6; user-select: none; margin-right: 4px;}
@@ -340,7 +334,7 @@
         .charts-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
         @media(min-width: 1024px) { .charts-grid { grid-template-columns: 1fr 2fr; } }
 
-        /* --- GTA Loading Screen - Fixo por Padrão --- */
+        /* --- GTA Loading Screen --- */
         #gta-loader {
             position: fixed;
             inset: 0;
@@ -369,13 +363,12 @@
             animation: fadeIn 0.5s ease-out;
         }
         
-        /* Animação e estilo para o GIF Temático */
         .gta-gif {
             width: 200px;
             max-width: 80vw;
             border-radius: 12px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 0 20px rgba(255, 42, 147, 0.5); /* Brilho neon rosa ao redor da imagem */
+            box-shadow: 0 0 20px rgba(255, 42, 147, 0.5); 
             object-fit: cover;
         }
 
@@ -403,9 +396,7 @@
 
     <div id="gta-loader">
         <div class="loader-content">
-            <!-- AQUI FICA A TAG DO GIF -->
             <img src="gta-loading.gif" alt="Carregando..." class="gta-gif">
-            
             <h2 class="loader-text">CARREGANDO DADOS...</h2>
             <div class="loader-tips">DICA: Carregando banco de dados de Leonida...</div>
         </div>
@@ -431,8 +422,6 @@
                 
                 <select id="respSelect" class="select-sm resp-select" title="Filtrar por Responsável">
                     <option value="Todos">Todos</option>
-                    <option value="Vitor">Vitor</option>
-                    <option value="Beatriz">Beatriz</option>
                 </select>
 
                 <select id="yearSelect" class="select-sm"></select>
@@ -442,7 +431,7 @@
                 <button class="btn-icon-text" id="btnImport" onclick="copyPreviousMonth()"><i class="ph-bold ph-copy"></i> Importar</button>
                 <button class="btn-icon-text" onclick="openSettingsModal()"><i class="ph-bold ph-gear"></i> Ajustes</button>
                 <button class="btn-icon-text" onclick="openProfileModal()"><i class="ph-bold ph-user-circle"></i> Perfil</button>
-                <button class="btn-icon-text btn-logout" onclick="logout()"><i class="ph-bold ph-sign-out"></i> Sair</button>
+                <button class="btn-icon-text btn-logout" onclick="logout()"><i class="ph-bold ph-sign-out"></i> SAIR</button>
             </div>
         </header>
 
@@ -607,8 +596,7 @@
                 <div class="form-group">
                     <label>Responsável <span style="color: var(--danger);">*</span></label>
                     <select id="tResponsible" class="form-control">
-                        <option value="Vitor">Vitor</option>
-                        <option value="Beatriz">Beatriz</option>
+                        <!-- Carregado Dinamicamente -->
                     </select>
                 </div>
                 
@@ -734,11 +722,23 @@
             <div class="modal-body">
                 <h4 style="margin-bottom: 10px; font-size: 0.95rem; font-weight: 800; color: var(--text-main); text-transform: uppercase;">Categorias de Despesas</h4>
                 <p style="font-size: 0.8rem; color: var(--text-sec); margin-bottom: 15px; font-weight: 500;">Adicione ou remova categorias que aparecerão na hora de criar uma Nova Saída.</p>
-                <div class="history-list" id="categoryList" style="max-height: 200px; margin-bottom: 0;"></div>
-                <div class="form-group" style="margin-bottom: 0; margin-top: 15px;">
+                <div class="history-list" id="categoryList" style="max-height: 150px; margin-bottom: 0;"></div>
+                <div class="form-group" style="margin-bottom: 20px; margin-top: 10px;">
                     <div style="display: flex; gap: 10px;">
                         <input type="text" id="newCategoryName" class="form-control" placeholder="Nova categoria (Ex: Armas, Carros...)">
                         <button class="btn btn-primary" onclick="addCategory()" style="width: auto; flex-shrink: 0;"><i class="ph-bold ph-plus"></i></button>
+                    </div>
+                </div>
+                
+                <hr style="border-color: var(--border); margin-bottom: 15px;">
+                
+                <h4 style="margin-bottom: 10px; font-size: 0.95rem; font-weight: 800; color: var(--text-main); text-transform: uppercase;">Responsáveis</h4>
+                <p style="font-size: 0.8rem; color: var(--text-sec); margin-bottom: 15px; font-weight: 500;">Cadastre as pessoas vinculadas às transações.</p>
+                <div class="history-list" id="respList" style="max-height: 150px; margin-bottom: 0;"></div>
+                <div class="form-group" style="margin-bottom: 0; margin-top: 10px;">
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="newRespName" class="form-control" placeholder="Novo responsável (Ex: João, Maria...)">
+                        <button class="btn btn-primary" onclick="addResp()" style="width: auto; flex-shrink: 0;"><i class="ph-bold ph-plus"></i></button>
                     </div>
                 </div>
             </div>
@@ -781,10 +781,11 @@
         window.currentSaldoRealizado = 0; 
         window.currentReportData = null;
         window.expenseCategories = ["Geral"];
+        window.responsiblesList = [];
 
         let chartInstances = {};
         window.currentChartTab = 'month';
-        window.isNavigating = false; // FLAG PARA TRAVAR O LOADING
+        window.isNavigating = false; 
 
         // Lógica para carregar frases externas
         let systemTips = [
@@ -807,15 +808,26 @@
                     }
                 }
             } catch (error) {
-                console.warn("Aviso: Não foi possível ler o frases.txt (talvez erro de CORS). Usando dicas padrão.");
+                console.warn("Aviso: Não foi possível ler o frases.txt. Usando dicas padrão.");
             }
         }
         
         loadExternalTips();
 
-        // ========== FUNÇÃO DA GARAGEM COM TELA DE LOADING ==========
+        // ALGORITMO PARA GERAR COR NEON BASEADO NO NOME DO RESPONSAVEL
+        function getNeonColor(name) {
+            if(!name) return { color: "var(--text-main)", bg: "var(--btn-act-bg)" };
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            const hue = Math.abs(hash % 360);
+            return {
+                color: `hsl(${hue}, 100%, 75%)`,
+                bg: `hsla(${hue}, 100%, 65%, 0.15)`
+            };
+        }
+
         window.goToGaragem = () => {
-            window.isNavigating = true; // Impede que o authState esconda o loading
+            window.isNavigating = true; 
             const loader = document.getElementById('gta-loader');
             loader.querySelector('.loader-text').innerText = 'ENTRANDO NA GARAGEM';
             
@@ -826,9 +838,8 @@
             
             setTimeout(() => {
                 window.location.href = 'indexgaragem.html';
-            }, 3000); // Exatos 3 Segundos
+            }, 3000); 
         };
-        // ============================================================
 
         window.showChartTab = (tab) => {
             window.currentChartTab = tab;
@@ -854,7 +865,7 @@
             let catData = {};
 
             Object.values(window.allTransactions).forEach(t => {
-                const resp = t.responsible || 'Vitor';
+                const resp = t.responsible || '';
                 if (window.currentRespFilter !== 'Todos' && resp !== window.currentRespFilter) return; 
 
                 let dObj = new Date();
@@ -888,7 +899,6 @@
 
             const ctxPie = document.getElementById('chartMonthPie').getContext('2d');
             
-            // Getting colors from CSS vars to match theme
             const style = getComputedStyle(document.body);
             const successColor = style.getPropertyValue('--success').trim() || '#00ff88';
             const dangerColor = style.getPropertyValue('--danger').trim() || '#ff003c';
@@ -962,7 +972,7 @@
                 snap.forEach(d => {
                     const t = d.data();
                     
-                    const resp = t.responsible || 'Vitor';
+                    const resp = t.responsible || '';
                     if (window.currentRespFilter !== 'Todos' && resp !== window.currentRespFilter) return;
 
                     const amount = parseFloat(t.amount || 0);
@@ -1074,7 +1084,7 @@
                     } else {
                         await addDoc(collection(db, "users", currentUser.uid, "transactions"), {
                             description: "Saldo Anterior", amount: saldoParaTransportar, type: "income", note: `Saldo transferido automaticamente de ${monthNames[currentMonth]}/${currentYear}`,
-                            paidAmount: saldoParaTransportar, order: 0, date: Timestamp.fromDate(carryDate), hasNoDate: true, isInstallment: false, isCarryOver: true, carryOverSource: key, isClosed: true, responsible: 'Vitor'
+                            paidAmount: saldoParaTransportar, order: 0, date: Timestamp.fromDate(carryDate), hasNoDate: true, isInstallment: false, isCarryOver: true, carryOverSource: key, isClosed: true, responsible: window.responsiblesList.length > 0 ? window.responsiblesList[0] : ''
                         });
                     }
                 } else {
@@ -1218,7 +1228,6 @@
             if (debtsUnsubscribe) { debtsUnsubscribe(); debtsUnsubscribe = null; }
             signOut(auth);
             
-            // Retorna ao login sem mostrar loader
             const loader = document.getElementById('gta-loader');
             if(loader) loader.style.display = 'none';
         };
@@ -1230,18 +1239,17 @@
                 document.getElementById('app-container').style.display = 'flex';
                 document.getElementById('user-display').innerText = user.displayName ? user.displayName : user.email;
                 
-                // Exibe a tela de loading por 3 segundos na entrada do sistema / volta da garagem
                 setTimeout(() => {
-                    if (!window.isNavigating) { // Verifica a trava
+                    if (!window.isNavigating) { 
                         const loader = document.getElementById('gta-loader');
                         if(loader) loader.style.display = 'none';
                     }
-                }, 3000); // Exatos 3 Segundos
+                }, 3000); 
 
                 try {
                     const docRef = doc(db, "users", user.uid, "settings", "preferences");
                     const docSnap = await getDoc(docRef);
-                    let userTheme = 'dark'; // Padrão Vice City Night
+                    let userTheme = 'dark'; 
                     if (docSnap.exists()) {
                         if (docSnap.data().theme) userTheme = docSnap.data().theme;
                         if (docSnap.data().lockedMonths) lockedMonths = docSnap.data().lockedMonths;
@@ -1257,6 +1265,16 @@
                         await setDoc(catRef, { list: ["Geral", "Alimentação", "Transporte", "Investimento", "Carros/Motos", "Arsenal"] });
                         window.expenseCategories = ["Geral", "Alimentação", "Transporte", "Investimento", "Carros/Motos", "Arsenal"];
                     }
+
+                    const respRef = doc(db, "users", user.uid, "settings", "responsibles");
+                    const respSnap = await getDoc(respRef);
+                    if(respSnap.exists() && respSnap.data().list) {
+                        window.responsiblesList = respSnap.data().list;
+                    } else {
+                        await setDoc(respRef, { list: [] });
+                        window.responsiblesList = [];
+                    }
+                    window.updateRespDropdowns();
                     
                 } catch (e) { console.error(e); }
 
@@ -1267,7 +1285,6 @@
                 if (debtsUnsubscribe) { debtsUnsubscribe(); debtsUnsubscribe = null; }
                 lockedMonths = []; 
                 
-                // Se não estiver logado, oculta o app e o loader, mostra o login
                 document.getElementById('app-container').style.display = 'none';
                 document.getElementById('auth-container').style.display = 'flex';
                 const loader = document.getElementById('gta-loader');
@@ -1279,8 +1296,8 @@
 
         window.openSettingsModal = () => {
             renderCategoryList();
+            renderRespList();
             document.getElementById('settingsModal').style.display = 'flex';
-            setTimeout(() => document.getElementById('newCategoryName').focus(), 100);
         };
 
         window.renderCategoryList = () => {
@@ -1324,6 +1341,74 @@
                 renderCategoryList();
             } catch(e) { console.error(e); alert("Erro ao remover categoria."); }
         };
+
+        // ========== LÓGICA DE RESPONSÁVEIS ==========
+        window.renderRespList = () => {
+            const container = document.getElementById('respList');
+            container.innerHTML = '';
+            if(window.responsiblesList.length === 0) {
+                container.innerHTML = '<div class="history-empty" style="padding: 1rem;">Nenhum responsável.</div>';
+                return;
+            }
+            window.responsiblesList.forEach((r, index) => {
+                const div = document.createElement('div');
+                div.className = 'history-item';
+                div.innerHTML = `
+                    <span style="font-weight: 700; color: var(--text-main); font-size: 0.95rem;">${r}</span>
+                    <button class="btn-act danger" onclick="removeResp(${index})" title="Remover Responsável"><i class="ph-bold ph-trash"></i></button>
+                `;
+                container.appendChild(div);
+            });
+            window.updateRespDropdowns();
+        };
+
+        window.addResp = async () => {
+            const input = document.getElementById('newRespName');
+            const val = input.value.trim();
+            if(!val) return;
+            const isDuplicate = window.responsiblesList.some(r => r.toLowerCase() === val.toLowerCase());
+            if(isDuplicate) return alert("Este responsável já existe!");
+            window.responsiblesList.push(val);
+            window.responsiblesList.sort(); 
+            try {
+                await setDoc(doc(db, "users", currentUser.uid, "settings", "responsibles"), { list: window.responsiblesList });
+                input.value = '';
+                renderRespList();
+                loadData(); 
+            } catch(e) { console.error(e); alert("Erro ao salvar responsável."); }
+        };
+
+        window.removeResp = async (index) => {
+            if(!confirm("Remover este responsável? As transações antigas não serão apagadas, mas ele sairá da lista.")) return;
+            window.responsiblesList.splice(index, 1);
+            try {
+                await setDoc(doc(db, "users", currentUser.uid, "settings", "responsibles"), { list: window.responsiblesList });
+                renderRespList();
+            } catch(e) { console.error(e); alert("Erro ao remover responsável."); }
+        };
+
+        window.updateRespDropdowns = () => {
+            const filterSel = document.getElementById('respSelect');
+            const formSel = document.getElementById('tResponsible');
+            
+            const currentFilter = filterSel.value;
+            const currentForm = formSel ? formSel.value : '';
+            
+            filterSel.innerHTML = '<option value="Todos">Todos</option>';
+            if(formSel) formSel.innerHTML = '';
+            
+            window.responsiblesList.forEach(r => {
+                filterSel.innerHTML += `<option value="${r}">${r}</option>`;
+                if(formSel) formSel.innerHTML += `<option value="${r}">${r}</option>`;
+            });
+            
+            if (window.responsiblesList.includes(currentFilter)) filterSel.value = currentFilter;
+            if (formSel) {
+                if (window.responsiblesList.includes(currentForm)) formSel.value = currentForm;
+                else if (window.responsiblesList.length > 0) formSel.value = window.responsiblesList[0];
+            }
+        };
+        // ============================================
 
         function initApp() {
             const rSel = document.getElementById('respSelect');
@@ -1552,7 +1637,7 @@
                         const data = d.data();
                         const t = {id: d.id, ...data};
                         
-                        const resp = data.responsible || 'Vitor';
+                        const resp = data.responsible || '';
                         t.responsible = resp;
 
                         window.allTransactions[t.id] = t; 
@@ -1692,10 +1777,12 @@
                             catBadge = `<span class="cat-badge">${t.category}</span>`;
                         }
 
-                        let respBadgeClass = t.responsible === 'Beatriz' ? 'resp-beatriz' : 'resp-vitor';
-                        let respBadge = `<span class="resp-badge ${respBadgeClass}" title="Responsável: ${t.responsible}">${t.responsible.substring(0,1)}</span>`;
-                        if (window.currentRespFilter === 'Todos') respBadge = `<span class="resp-badge ${respBadgeClass}">${t.responsible}</span>`;
-                        else respBadge = '';
+                        // === GERADOR DE COR NEON DINÂMICO PARA OS RESPONSÁVEIS ===
+                        let respBadge = '';
+                        if (window.currentRespFilter === 'Todos' && t.responsible) {
+                            const neonStyles = getNeonColor(t.responsible);
+                            respBadge = `<span class="resp-badge" style="color: ${neonStyles.color}; border-color: ${neonStyles.color}; background: ${neonStyles.bg};">${t.responsible}</span>`;
+                        }
                         
                         let dateDisplay = `<span class="date-span" style="font-size:0.8rem; color:var(--text-sec); font-weight:700;">${day}/${mon}</span>`;
                         if (hasNoDate) dateDisplay = `<span class="date-span" style="font-size:0.8rem; color:var(--text-sec); font-weight:800; letter-spacing: 1px; opacity: 0.5;" title="Sob demanda / Sem Vencimento">--/--</span>`;
@@ -1790,7 +1877,7 @@
             
             let descFinal = t.description;
             let cat = t.category || '-';
-            let resp = t.responsible || 'Vitor';
+            let resp = t.responsible || '';
             
             return { dateStr, desc: descFinal, category: cat, status, amount, paid, diff, responsible: resp };
         }
@@ -1957,10 +2044,13 @@
             document.getElementById('tValue').value = ''; 
             document.getElementById('tNote').value = '';
 
-            if (window.currentRespFilter === 'Vitor' || window.currentRespFilter === 'Beatriz') {
+            // Se o filtro global for um responsável válido, preenche o modal com ele
+            if (window.responsiblesList.includes(window.currentRespFilter)) {
                 document.getElementById('tResponsible').value = window.currentRespFilter;
+            } else if (window.responsiblesList.length > 0) {
+                document.getElementById('tResponsible').value = window.responsiblesList[0];
             } else {
-                document.getElementById('tResponsible').value = 'Vitor';
+                document.getElementById('tResponsible').value = '';
             }
             
             if (type === 'expense') {
@@ -2128,7 +2218,13 @@
             document.getElementById('tValue').value=v; 
             document.getElementById('tType').value=t; 
             document.getElementById('tNote').value=n.replace(/&quot;/g, '"'); 
-            document.getElementById('tResponsible').value = resp || 'Vitor';
+            
+            const formSel = document.getElementById('tResponsible');
+            if (resp && window.responsiblesList.includes(resp)) {
+                formSel.value = resp;
+            } else if (window.responsiblesList.length > 0) {
+                formSel.value = window.responsiblesList[0];
+            }
             
             if (t === 'expense') {
                 document.getElementById('groupCategory').style.display = 'block';
@@ -2164,7 +2260,7 @@
                 batch.set(doc(collection(db, "users", currentUser.uid, "transactions")), {
                     description: dd.description, amount: dd.amount, type: dd.type, paidAmount: 0, 
                     order: typeof dd.order === 'number' ? dd.order : Date.now(), note: dd.note || "", 
-                    date: Timestamp.fromDate(newDate), hasNoDate: dd.hasNoDate || false, isInstallment: false, category: dd.category || null, responsible: dd.responsible || 'Vitor'
+                    date: Timestamp.fromDate(newDate), hasNoDate: dd.hasNoDate || false, isInstallment: false, category: dd.category || null, responsible: dd.responsible || (window.responsiblesList.length > 0 ? window.responsiblesList[0] : '')
                 });
             });
             await batch.commit();
