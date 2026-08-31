@@ -352,57 +352,52 @@
             padding-bottom: 1.2rem;
         }
 
-        /* MODO MOBILE APP: alternado por duplo clique em VICE FINANCE */
+        /* MODO MOBILE LIMPO — alternado por duplo clique em VICE FINANCE */
         .mobile-dock { display: none; }
-        body.mobile-mode { --mobile-radius: 22px; overflow: hidden; }
+        body.mobile-mode { overflow: hidden; }
         body.mobile-mode #app-container { height: 100dvh; }
-        body.mobile-mode header { min-height: 68px; padding: .72rem .9rem .6rem; justify-content: center; }
-        body.mobile-mode .brand { justify-content: center; text-align: center; font-size: 1.05rem; line-height: 1; }
+        body.mobile-mode header { min-height: 64px; padding: .7rem .8rem; justify-content: center; }
+        body.mobile-mode .brand { justify-content: center; text-align: center; font-size: 1rem; line-height: 1.1; }
         body.mobile-mode .brand > div { justify-content: center; }
-        body.mobile-mode .brand i { font-size: 1.45rem; margin-right: 6px; }
-        body.mobile-mode .brand::after { content: 'modo mobile ativo • duplo clique para sair'; font-size: .52rem; margin-top: 5px; color: var(--primary); opacity: .95; }
+        body.mobile-mode .brand i { font-size: 1.35rem; margin-right: 6px; }
+        body.mobile-mode .brand::after { content: 'modo mobile ativo · toque duas vezes para sair'; font-size: .5rem; margin-top: 4px; color: var(--primary); opacity: .9; }
         body.mobile-mode #user-display { display: none; }
-        body.mobile-mode .btn-header-link { position: absolute; right: .75rem; top: .75rem; margin: 0; width: 38px; height: 38px; padding: 0; font-size: 0; border-radius: 13px; }
-        body.mobile-mode .btn-header-link i { font-size: 1.2rem !important; }
+        body.mobile-mode .btn-header-link { position: absolute; right: .7rem; top: .7rem; margin: 0; width: 36px; height: 36px; padding: 0; font-size: 0; border-radius: 10px; }
+        body.mobile-mode .btn-header-link i { font-size: 1.1rem !important; }
         body.mobile-mode .top-actions { display: none; }
-        body.mobile-mode .nav-tabs { padding: .55rem .7rem; gap: .45rem; border-bottom: none; background: transparent; }
-        body.mobile-mode .nav-tab { border: 1px solid var(--border); border-radius: 999px; padding: .46rem .8rem; font-size: .66rem; background: var(--bg-panel); }
-        body.mobile-mode .nav-tab.active { border-color: var(--primary); background: linear-gradient(90deg, var(--primary), var(--warning)); color: #fff; }
-        body.mobile-mode .workspace { padding: .2rem .75rem 92px; gap: .85rem; }
-        body.mobile-mode .kpi-grid { display: flex; gap: .65rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: .15rem .05rem .5rem; scrollbar-width: none; }
-        body.mobile-mode .kpi-grid::-webkit-scrollbar { display: none; }
-        body.mobile-mode .kpi-block { flex: 0 0 74vw; min-height: 108px; padding: .9rem; border-radius: var(--mobile-radius); scroll-snap-align: start; justify-content: space-between; }
-        body.mobile-mode .kpi-label { font-size: .62rem; }
-        body.mobile-mode .kpi-val { font-size: 1.65rem; }
-        body.mobile-mode .toolbar { position: sticky; top: 0; z-index: 20; padding: .65rem; border-radius: 18px; display: block; }
-        body.mobile-mode .view-filters { display: grid; grid-template-columns: repeat(4, 1fr); border: none; gap: .3rem; overflow: visible; }
-        body.mobile-mode .btn-filter { border: 1px solid transparent; border-radius: 12px; padding: .62rem .2rem; font-size: .58rem; }
-        body.mobile-mode .btn-filter i { display: block; font-size: 1rem; margin-bottom: 2px; }
-        body.mobile-mode .toolbar-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: .35rem; margin-top: .55rem; }
-        body.mobile-mode .btn-add { min-height: 38px; justify-content: center; padding: .35rem .2rem; font-size: .58rem; border-radius: 11px; white-space: normal; text-align: center; }
-        body.mobile-mode .data-sections { gap: .8rem; }
-        body.mobile-mode .section-col { border-radius: var(--mobile-radius); }
-        body.mobile-mode .section-header { padding: .9rem 1rem; font-size: .76rem; }
-        body.mobile-mode .table-responsive { overflow: visible; }
-        body.mobile-mode .saas-table, body.mobile-mode .saas-table tbody { display: block; }
-        body.mobile-mode .saas-table thead { display: none; }
-        body.mobile-mode .saas-table tr { display: grid; grid-template-columns: 1fr auto; gap: .35rem .65rem; padding: .8rem .95rem; border-bottom: 1px solid var(--border-light); }
-        body.mobile-mode .saas-table td { display: block; padding: 0; border: 0; min-width: 0; }
-        body.mobile-mode .saas-table td:first-child { grid-column: 1; padding: 0; }
-        body.mobile-mode .saas-table td:last-child { grid-column: 2; grid-row: 1 / span 2; padding: 0; align-self: center; }
-        body.mobile-mode .saas-table td:nth-child(2), body.mobile-mode .saas-table td:nth-child(3) { font-size: .7rem; color: var(--text-sec); }
-        body.mobile-mode .td-desc, body.mobile-mode .desc-text { max-width: 100%; font-size: .79rem; }
-        body.mobile-mode .curr-num { font-size: .82rem; }
+        body.mobile-mode .nav-tabs { padding: .55rem .7rem .35rem; gap: .4rem; border-bottom: 1px solid var(--border); background: transparent; }
+        body.mobile-mode .nav-tab { border: 1px solid var(--border); border-radius: 8px; padding: .42rem .72rem; font-size: .64rem; background: var(--bg-panel); }
+        body.mobile-mode .nav-tab.active { border-color: var(--primary); background: var(--primary); color: #fff; }
+        body.mobile-mode .workspace { padding: .75rem .7rem 84px; gap: .85rem; }
+        body.mobile-mode .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+        body.mobile-mode .kpi-block { min-width: 0; min-height: 96px; padding: .8rem; border-radius: 14px; }
+        body.mobile-mode .kpi-label { font-size: .58rem; line-height: 1.25; }
+        body.mobile-mode .kpi-val { font-size: 1.35rem; margin-top: .35rem; }
+        body.mobile-mode .toolbar { padding: .7rem; border-radius: 14px; display: block; }
+        body.mobile-mode .view-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 0; gap: .4rem; overflow: visible; }
+        body.mobile-mode .btn-filter { border: 1px solid var(--border); border-radius: 9px; padding: .58rem .35rem; font-size: .62rem; }
+        body.mobile-mode .btn-filter.active { border-color: var(--primary); }
+        body.mobile-mode .btn-filter i { margin-right: 3px; }
+        body.mobile-mode .toolbar-actions { display: grid; grid-template-columns: 1fr; gap: .4rem; margin-top: .65rem; }
+        body.mobile-mode .btn-add { min-height: 38px; justify-content: center; padding: .45rem .5rem; font-size: .66rem; border-radius: 9px; }
+        body.mobile-mode .data-sections { gap: .75rem; }
+        body.mobile-mode .section-col { border-radius: 14px; }
+        body.mobile-mode .section-header { padding: .8rem .85rem; font-size: .72rem; line-height: 1.3; }
+        body.mobile-mode .table-responsive { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+        body.mobile-mode .saas-table { min-width: 680px; font-size: .78rem; }
+        body.mobile-mode .saas-table th { padding: .65rem .45rem; font-size: .6rem; }
+        body.mobile-mode .saas-table td { padding: .7rem .45rem; }
+        body.mobile-mode .td-desc { max-width: 220px; }
         body.mobile-mode .col-drag, body.mobile-mode .col-actions { display: none !important; }
-        body.mobile-mode .mobile-dock { display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; z-index: 100; bottom: .65rem; left: .7rem; right: .7rem; padding: .4rem; gap: .25rem; border: 1px solid var(--border); border-radius: 22px; background: var(--bg-panel-solid); backdrop-filter: blur(20px); box-shadow: 0 12px 30px rgba(0,0,0,.38); }
-        body.mobile-mode .mobile-dock button { border: 0; background: transparent; color: var(--text-sec); min-height: 46px; border-radius: 16px; font-size: .52rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer; }
-        body.mobile-mode .mobile-dock button i { font-size: 1.15rem; }
+        body.mobile-mode .mobile-dock { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); position: fixed; z-index: 100; bottom: .55rem; left: .6rem; right: .6rem; padding: .35rem; gap: .2rem; border: 1px solid var(--border); border-radius: 15px; background: var(--bg-panel-solid); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+        body.mobile-mode .mobile-dock button { border: 0; background: transparent; color: var(--text-sec); min-width: 0; min-height: 45px; border-radius: 10px; font-size: .5rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer; }
+        body.mobile-mode .mobile-dock button i { font-size: 1.05rem; }
         body.mobile-mode .mobile-dock button.active { color: var(--primary); background: var(--btn-act-hover); }
-        body.mobile-mode .mobile-dock .dock-add { color: #fff; background: linear-gradient(145deg, var(--primary), var(--warning)); box-shadow: 0 5px 14px rgba(219,39,119,.35); }
-        body.mobile-mode .modal { padding: .65rem; align-items: flex-end; }
-        body.mobile-mode .modal-content { max-height: 92dvh; border-radius: 24px 24px 16px 16px; }
+        body.mobile-mode .mobile-dock .dock-add { color: #fff; background: var(--primary); }
+        body.mobile-mode .modal { padding: .6rem; align-items: flex-end; }
+        body.mobile-mode .modal-content { max-height: 92dvh; border-radius: 18px 18px 12px 12px; }
         body.mobile-mode .modal-footer { padding-bottom: calc(1rem + env(safe-area-inset-bottom)); }
-        @media (max-width: 520px) { body.mobile-mode .workspace { padding-left: .6rem; padding-right: .6rem; } body.mobile-mode .kpi-block { flex-basis: 82vw; } }
+        @media (max-width: 380px) { body.mobile-mode .kpi-label { font-size: .53rem; } body.mobile-mode .kpi-val { font-size: 1.2rem; } }
 
         .kpi-grid { 
             display: grid; 
@@ -1204,8 +1199,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
         <nav class="mobile-dock" aria-label="Navegação rápida no modo mobile">
             <button type="button" data-mobile-view="all" onclick="setView('all')"><i class="ph-bold ph-squares-four"></i><span>Resumo</span></button>
             <button type="button" data-mobile-view="income" onclick="setView('income')"><i class="ph-bold ph-arrow-down-left"></i><span>Entradas</span></button>
@@ -1213,6 +1206,7 @@
             <button type="button" data-mobile-view="expense" onclick="setView('expense')"><i class="ph-bold ph-arrow-up-right"></i><span>Saídas</span></button>
             <button type="button" data-mobile-view="charts" onclick="setView('charts')"><i class="ph-bold ph-chart-bar"></i><span>Gráficos</span></button>
         </nav>
+    </div>
 
     <!-- Modais -->
     <div class="modal" id="transactionModal">
