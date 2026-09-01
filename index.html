@@ -1146,7 +1146,6 @@
                 </select>
                 <select id="yearSelect" class="select-sm"></select>
                 
-                <!-- BOTÃO MINIMALISTA DO RÁDIO -->
                 <button class="btn-icon-text" id="btnOpenRadio" onclick="openRadioModal()" style="color: var(--warning); border-color: rgba(234, 88, 12, 0.4); background: rgba(234, 88, 12, 0.1);">
                     <i class="ph-bold ph-radio" id="radioBtnIcon"></i> <span id="radioBtnText">Rádio</span>
                 </button>
@@ -2064,6 +2063,18 @@
                     document.body.setAttribute('data-theme', userTheme);
                     updateThemeButtonText(userTheme);
                     
+                    // =====================================================================
+                    // NOVA LÓGICA: Descobre qual é o primeiro mês ABERTO do ano e define 
+                    // a visualização inicial do sistema para focar nele.
+                    // =====================================================================
+                    for (let m = 0; m < 12; m++) {
+                        if (!lockedMonths.includes(`${currentYear}-${m}`)) {
+                            currentMonth = m;
+                            break;
+                        }
+                    }
+                    // =====================================================================
+
                     const catRef = doc(db, "users", user.uid, "settings", "categories");
                     const catSnap = await getDoc(catRef);
                     if(catSnap.exists() && catSnap.data().list) {
@@ -3141,7 +3152,6 @@
             }[char]));
           }
         
-          /* 1. CORREÇÃO DA FUNÇÃO QUE SUMIU OU FOI DIGITADA ERRADA NO SEU CÓDIGO */
           function setStatus(message, isError = false) {
             if(!els.status) return;
             els.status.textContent = message;
@@ -3185,7 +3195,6 @@
             try {
               const stations = await apiRequest('/json/stations/search', params);
               
-              /* 2. CORREÇÃO PARA O GITHUB PAGES: Permitir apenas rádios com HTTPS */
               state.stations = stations.filter((station) => {
                   const streamUrl = station.url_resolved || station.url;
                   return streamUrl && streamUrl.startsWith('https://');
