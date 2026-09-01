@@ -87,11 +87,11 @@
         /* --- Layout --- */
         #app-container { display: none; flex-direction: column; height: 100%; }
 
-        header { background: var(--header-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+        header { background: var(--header-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; flex-wrap: wrap; gap: 1rem;}
         .brand { font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; color: var(--text-main); text-shadow: var(--brand-glow); text-transform: uppercase;}
         .brand i { color: var(--kpi-saldo-color); font-size: 1.8rem; filter: drop-shadow(0 0 8px var(--kpi-saldo-color)); }
         
-        .header-actions { display: flex; gap: 10px; }
+        .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
         .btn-icon-text { background: var(--btn-act-bg); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: var(--text-main); text-transform: uppercase;}
         .btn-icon-text:hover { background: var(--btn-act-hover); border-color: var(--primary); color: var(--primary); }
@@ -159,6 +159,77 @@
         .flex-row > div { flex: 1; }
 
         /* ==========================================================
+           RADIO WIDGET CSS (Minimalista Integrado)
+           ========================================================== */
+        @keyframes pulseAudio {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; filter: drop-shadow(0 0 8px var(--primary)); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .radio-playing-icon {
+            animation: pulseAudio 1.2s infinite;
+            color: var(--primary) !important;
+        }
+        .radio-widget-modal {
+            --rb-panel: var(--bg-panel);
+            --rb-panel-2: var(--btn-act-bg);
+            --rb-text: var(--text-main);
+            --rb-muted: var(--text-sec);
+            --rb-accent: var(--primary);
+            --rb-accent-2: var(--warning);
+            --rb-border: var(--border);
+            width: 100%;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            color: var(--rb-text);
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            font-family: inherit;
+        }
+        .radio-widget-modal *, .radio-widget-modal *::before, .radio-widget-modal *::after { box-sizing: border-box; }
+        .radio-header { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; margin-bottom:1.5rem; }
+        .radio-eyebrow { color:var(--rb-accent-2); font-size:.72rem; font-weight:800; letter-spacing:.14em; }
+        .radio-widget-modal h2 { margin:.35rem 0 .45rem; font-size:clamp(1.2rem, 3vw, 1.8rem); font-weight: 900; text-transform: uppercase;}
+        .radio-widget-modal p { color:var(--rb-muted); margin:0; font-size: 0.85rem;}
+        .radio-live-indicator { white-space:nowrap; padding:.55rem .8rem; color:var(--success); background:rgba(5, 150, 105, 0.1); border:1px solid rgba(5, 150, 105, 0.3); border-radius:8px; font-size:.8rem; font-weight:800; text-transform: uppercase;}
+        .radio-live-indicator span { display:inline-block; width:8px; height:8px; margin-right:.4rem; background:var(--success); border-radius:50%; box-shadow:0 0 0 4px rgba(5, 150, 105, 0.2); animation: pulseAudio 2s infinite;}
+        .radio-search-form { display:grid; grid-template-columns:2fr 100px 1fr 100px auto; gap:.75rem; align-items:end; padding:1rem; background:var(--table-th-bg); border:1px solid var(--rb-border); border-radius:12px; }
+        .radio-search-form label, .radio-volume { display:flex; flex-direction:column; gap:.4rem; }
+        .radio-search-form label span, .radio-volume label { color:var(--rb-muted); font-size:.75rem; font-weight:800; text-transform: uppercase;}
+        .radio-search-form input, .radio-search-form select { width:100%; height:38px; padding:0 .75rem; color:var(--rb-text); background:var(--input-bg); border:1px solid var(--rb-border); border-radius:8px; outline:none; font-family: inherit;}
+        .radio-search-form input:focus, .radio-search-form select:focus { border-color:var(--rb-accent); box-shadow:var(--focus-ring); }
+        .radio-search-form .button { min-height: 38px; }
+        .radio-status { min-height:1.4rem; margin:1rem 0; font-size:.85rem; font-weight: 600;}
+        .radio-status.is-error { color:var(--danger); }
+        .radio-layout { display:grid; grid-template-columns:minmax(0, 2fr) minmax(260px, 1fr); gap:1.25rem; }
+        .radio-section-title { margin:1rem 0 .75rem; font-size:0.9rem; font-weight: 800; text-transform: uppercase; color: var(--rb-text);}
+        .radio-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:.75rem; }
+        .radio-grid-favorites { grid-template-columns:1fr; }
+        .radio-card { display:grid; grid-template-columns:46px minmax(0, 1fr) auto; gap:.75rem; align-items:center; min-width:0; padding:.8rem; background:var(--rb-panel); border:1px solid var(--rb-border); border-radius:12px; transition: 0.2s;}
+        .radio-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .radio-card-icon, .radio-player-icon { display:grid; place-items:center; flex:none; width:46px; height:46px; color:var(--rb-accent-2); background:var(--rb-panel-2); border-radius:10px; overflow:hidden; font-size:1.35rem; }
+        .radio-card-icon img, .radio-player-icon img { width:100%; height:100%; object-fit:cover; }
+        .radio-card-content { min-width:0; }
+        .radio-card h3 { overflow:hidden; margin:0 0 .25rem; text-overflow:ellipsis; white-space:nowrap; font-size:.9rem; font-weight: 700;}
+        .radio-card p, .radio-card small { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:.7rem; }
+        .radio-card small { margin-top:.25rem; color:var(--rb-muted); font-weight: 600;}
+        .radio-card-actions { display:flex; align-items:center; gap:.25rem; }
+        .radio-card-actions .button-primary { padding:.4rem .6rem; font-size:.75rem; }
+        .radio-empty-state { padding:1rem; background:var(--table-th-bg); border:1px dashed var(--rb-border); border-radius:12px; font-size:.85rem; text-align: center; color: var(--rb-muted); font-weight: 600;}
+        .radio-player-bar { position:sticky; bottom:0; z-index:2; display:flex; align-items:center; gap:1rem; margin-top:1.5rem; padding:.8rem 1rem; background:var(--table-th-bg); border:1px solid var(--rb-border); border-radius:12px; backdrop-filter:var(--glass-blur); }
+        .radio-now-playing { display:flex; align-items:center; gap:.7rem; min-width:200px; }
+        .radio-now-playing strong, .radio-now-playing small { display:block; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .radio-now-playing strong { font-size:.85rem; font-weight: 800;}
+        .radio-now-playing small { margin-top:.2rem; color:var(--rb-muted); font-size:.72rem; font-weight: 600;}
+        .radio-player-bar audio { flex:1; min-width:150px; height:36px; border-radius: 8px;}
+        .radio-volume { flex-direction:row; align-items:center; gap:.5rem; }
+        .radio-volume label { display:none; }
+        .radio-volume input { width:80px; accent-color:var(--rb-accent); }
+        
+        @media (max-width: 850px) { .radio-search-form { grid-template-columns:repeat(2, 1fr); } .radio-search-form label:first-child { grid-column:span 2; } .radio-search-form .button { width:100%; } .radio-layout { grid-template-columns:1fr; } }
+        @media (max-width: 620px) { .radio-header { flex-direction:column; } .radio-grid { grid-template-columns:1fr; } .radio-player-bar { align-items:stretch; flex-direction:column; } .radio-now-playing { min-width:0; } .radio-now-playing strong, .radio-now-playing small { max-width:calc(100vw - 100px); } .radio-volume { justify-content:space-between; } .radio-volume label { display:block; } .radio-volume input { flex:1; } }
+
+        /* ==========================================================
            RESPONSIVIDADE - SMARTPHONE
            ========================================================== */
         @media (max-width: 768px) {
@@ -177,18 +248,16 @@
 
             .flex-row { flex-direction: column; gap: 0; }
 
-            /* Transformar Tabela em Cards no Mobile */
             .saas-table thead { display: none; }
             .saas-table, .saas-table tbody, .saas-table tr, .saas-table td { display: block; width: 100%; }
             .saas-table tr { margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px; background: rgba(0,0,0,0.2); }
             .saas-table td { border-bottom: none; padding: 0.8rem; position: relative; text-align: left !important; }
             
-            /* Reorganizando os dados dentro do "card" da tabela */
-            .saas-table td:nth-child(1) { font-size: 0.8rem; color: var(--text-sec); padding-bottom: 0.2rem; } /* Data */
-            .saas-table td:nth-child(2) { font-size: 1.1rem; font-weight: 800; padding-top: 0; } /* Descrição */
-            .saas-table td:nth-child(3) { padding-top: 0; padding-bottom: 0.5rem; } /* Badge */
-            .saas-table td:nth-child(4) { font-size: 1.2rem; color: var(--danger); font-weight: 900; } /* Valor */
-            .saas-table td:nth-child(5) { position: absolute; right: 0.5rem; top: 0.5rem; padding: 0; } /* Botão Lixeira */
+            .saas-table td:nth-child(1) { font-size: 0.8rem; color: var(--text-sec); padding-bottom: 0.2rem; } 
+            .saas-table td:nth-child(2) { font-size: 1.1rem; font-weight: 800; padding-top: 0; } 
+            .saas-table td:nth-child(3) { padding-top: 0; padding-bottom: 0.5rem; } 
+            .saas-table td:nth-child(4) { font-size: 1.2rem; color: var(--danger); font-weight: 900; } 
+            .saas-table td:nth-child(5) { position: absolute; right: 0.5rem; top: 0.5rem; padding: 0; } 
         }
     </style>
 </head>
@@ -214,6 +283,10 @@
         <header>
             <div class="brand"><i class="ph-fill ph-car-profile"></i> VICE <span style="color: var(--primary);">GARAGE</span></div>
             <div class="header-actions">
+                <!-- BOTÃO DA RÁDIO INTEGRADO -->
+                <button class="btn-icon-text" id="btnOpenRadio" onclick="openRadioModal()" style="color: var(--warning); border-color: rgba(255, 140, 0, 0.4); background: rgba(255, 140, 0, 0.1);">
+                    <i class="ph-bold ph-radio" id="radioBtnIcon"></i> <span id="radioBtnText">Rádio</span>
+                </button>
                 <button class="btn-icon-text sys-main" onclick="window.location.href='index.html'" title="Ir para o Vice Finance"><i class="ph-bold ph-bank"></i> Vice Finance</button>
             </div>
         </header>
@@ -397,11 +470,86 @@
         </div>
     </div>
 
+    <!-- MODAL DO RADIO BROWSER -->
+    <div class="modal" id="radioModal">
+        <div class="modal-content" style="max-width: 950px; border-radius: 16px;">
+            <div class="modal-header">
+                <span style="color: var(--primary);"><i class="ph-bold ph-radio"></i> Estúdio de Rádio</span>
+                <button class="btn-close" onclick="closeModal('radioModal')"><i class="ph-bold ph-x"></i></button>
+            </div>
+            <div class="modal-body" style="padding: 0; max-height: 80vh; overflow-y: auto;">
+                <section id="radio-browser-widget" class="radio-widget-modal" aria-label="Rádio online">
+                  <div class="radio-header">
+                    <div>
+                      <span class="radio-eyebrow">RÁDIO ONLINE</span>
+                      <h2>Encontre uma estação</h2>
+                      <p>Pesquise por nome, país ou género e comece a ouvir.</p>
+                    </div>
+                    <div class="radio-live-indicator"><span></span> Ao vivo</div>
+                  </div>
+                
+                  <form id="radio-search-form" class="radio-search-form">
+                    <label>
+                      <span>Nome ou palavra-chave</span>
+                      <input id="radio-query" type="search" placeholder="Ex.: jazz, rock, notícias" autocomplete="off">
+                    </label>
+                    <label>
+                      <span>País</span>
+                      <input id="radio-country" type="text" maxlength="2" placeholder="BR" aria-label="Código do país ISO de duas letras">
+                    </label>
+                    <label>
+                      <span>Género</span>
+                      <input id="radio-tag" type="text" placeholder="Ex.: pop">
+                    </label>
+                    <label>
+                      <span>Resultados</span>
+                      <select id="radio-limit">
+                        <option value="12">12</option>
+                        <option value="24" selected>24</option>
+                        <option value="48">48</option>
+                      </select>
+                    </label>
+                    <button class="button btn-primary" type="submit">Pesquisar</button>
+                  </form>
+                
+                  <p id="radio-status" class="radio-status" role="status">A carregar estações…</p>
+                
+                  <div class="radio-layout">
+                    <main>
+                      <h3 class="radio-section-title">Estações encontradas</h3>
+                      <div id="radio-results" class="radio-grid"></div>
+                    </main>
+                    <aside>
+                      <h3 class="radio-section-title">Os meus favoritos</h3>
+                      <div id="radio-favorites" class="radio-grid radio-grid-favorites"></div>
+                    </aside>
+                  </div>
+                
+                  <div class="radio-player-bar">
+                    <div class="radio-now-playing">
+                      <div class="radio-player-icon"><img id="radio-now-playing-icon" alt=""></div>
+                      <div>
+                        <strong id="radio-now-playing">Nenhuma estação selecionada</strong>
+                        <small id="radio-now-playing-meta"></small>
+                      </div>
+                    </div>
+                    <audio id="radio-player" controls preload="none"></audio>
+                    <div class="radio-volume">
+                      <label for="radio-volume">Volume</label>
+                      <input id="radio-volume" type="range" min="0" max="1" step="0.05" value="0.8">
+                      <button id="radio-stop" class="button btn-secondary" type="button" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Parar</button>
+                    </div>
+                  </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
     <!-- FIREBASE SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, onSnapshot, deleteDoc, updateDoc, doc, Timestamp, orderBy } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserSessionPersistence, signOut } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, onSnapshot, deleteDoc, updateDoc, doc, Timestamp, orderBy, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCcrZ2AY_HRqmgQQ7qYDTd2-Om_8oHSO1o",
@@ -424,6 +572,23 @@
         let vehiclesData = {};
         let expenseToDelete = null; 
 
+        // ==========================================
+        // SINCRONIZAR RÁDIO COM O FIREBASE
+        // ==========================================
+        window.syncRadioToFirebase = async (radioState) => {
+            if (!currentUser) return;
+            try {
+                const docRef = doc(db, "users", currentUser.uid, "settings", "preferences");
+                await setDoc(docRef, {
+                    radioFavorites: radioState.favorites,
+                    radioStartup: radioState.startupRadio,
+                    radioAutoPlay: radioState.autoPlayEnabled
+                }, { merge: true });
+            } catch (error) {
+                console.error("Erro ao sincronizar rádio com Firebase:", error);
+            }
+        };
+
         // Formatação
         const fmtBRL = (v) => parseFloat(v || 0).toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
         const fmtDate = (d) => {
@@ -439,6 +604,8 @@
         };
         window.openModal = (id) => document.getElementById(id).style.display = 'flex';
         window.closeModal = (id) => document.getElementById(id).style.display = 'none';
+        
+        window.openRadioModal = () => document.getElementById('radioModal').style.display = 'flex';
 
         // Auth
         document.getElementById('password').addEventListener('keyup', (e) => { 
@@ -461,27 +628,46 @@
             }
         };
 
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             setTimeout(() => {
                 const globalLoader = document.getElementById('global-loader');
                 if(globalLoader) globalLoader.style.display = 'none';
-
-                if (user) {
-                    currentUser = user;
-                    document.getElementById('auth-container').style.display = 'none';
-                    document.getElementById('app-container').style.display = 'flex';
-                    
-                    const btn = document.getElementById('btnLogin');
-                    btn.innerHTML = 'Acessar Garagem';
-                    btn.disabled = false;
-                    
-                    loadVehicles();
-                } else {
-                    currentUser = null;
-                    document.getElementById('auth-container').style.display = 'flex';
-                    document.getElementById('app-container').style.display = 'none';
-                }
             }, 2500);
+            
+            if (user) {
+                currentUser = user;
+                document.getElementById('auth-container').style.display = 'none';
+                document.getElementById('app-container').style.display = 'flex';
+                
+                const btn = document.getElementById('btnLogin');
+                btn.innerHTML = 'Acessar Garagem';
+                btn.disabled = false;
+                
+                // BUSCAR PREFERENCIAS DA RADIO DO FIREBASE
+                try {
+                    const docRef = doc(db, "users", user.uid, "settings", "preferences");
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        if (window.initUserRadio) {
+                            window.initUserRadio(
+                                data.radioFavorites || [], 
+                                data.radioStartup || null, 
+                                data.radioAutoPlay !== false
+                            );
+                        }
+                    } else {
+                        if (window.initUserRadio) window.initUserRadio([], null, false);
+                    }
+                } catch(e) { console.error("Erro ao puxar configs da rádio", e); }
+
+                loadVehicles();
+            } else {
+                currentUser = null;
+                if (window.resetRadio) window.resetRadio();
+                document.getElementById('auth-container').style.display = 'flex';
+                document.getElementById('app-container').style.display = 'none';
+            }
         });
 
         // ==========================================
@@ -561,7 +747,6 @@
             } catch(e) { ySel.innerHTML = '<option value="">ERRO DE CONEXÃO</option>'; }
         };
 
-        // Função Assíncrona para pré-carregar os dados da FIPE ao Editar
         async function preloadFipe(config) {
             if(!config || !config.tipo) return;
             
@@ -610,7 +795,6 @@
 
             openModal('vehicleModal');
 
-            // Feedback visual enquanto repuxa o caminho da FIPE
             const btnSave = document.getElementById('btnSaveVehicle');
             btnSave.disabled = true;
             btnSave.innerHTML = '<i class="ph-bold ph-spinner ph-spin"></i> CARREGANDO FIPE...';
@@ -632,7 +816,6 @@
                 return alert("Selecione os dados da Tabela FIPE corretamente.");
             }
 
-            // Sanitização e Captura
             const color = document.getElementById('vColor').value.trim().toUpperCase();
             const purchaseDate = document.getElementById('vDate').value;
             const purchasePrice = parseFloat(document.getElementById('vPrice').value);
@@ -662,18 +845,15 @@
             
             try {
                 if (vId) {
-                    // MODO EDIÇÃO
                     await updateDoc(doc(db, "users", currentUser.uid, "vehicles", vId), data);
-                    vehiclesData[vId] = { ...vehiclesData[vId], ...data }; // atualiza cache local
+                    vehiclesData[vId] = { ...vehiclesData[vId], ...data }; 
                     
-                    // Atualiza a tela de detalhes que já está aberta
                     document.getElementById('detVehicleName').innerText = `${data.brand} ${data.model}`;
                     document.getElementById('kpiPurchaseVal').innerText = fmtBRL(data.purchasePrice);
                     document.getElementById('kpiPurchaseDate').innerText = `Comprado em: ${fmtDate(data.purchaseDate)}`;
                     fetchCurrentFipe(data.fipeConfig);
                     
                 } else {
-                    // MODO CRIAÇÃO
                     data.isSold = false;
                     data.createdAt = Date.now();
                     await addDoc(collection(db, "users", currentUser.uid, "vehicles"), data);
@@ -686,7 +866,6 @@
         function loadVehicles() {
             if (vehiclesUnsubscribe) vehiclesUnsubscribe();
             
-            // ORDENAÇÃO: Pela data da compra (purchaseDate) de forma decrescente
             const q = query(collection(db, "users", currentUser.uid, "vehicles"), orderBy("purchaseDate", "desc"));
             
             vehiclesUnsubscribe = onSnapshot(q, (snap) => {
@@ -735,7 +914,6 @@
             loadExpenses(id);
         };
 
-        // UI de Veículo Vendido
         function updateSoldUI(isSold) {
             const btnToggleSold = document.getElementById('btnToggleSold');
             const btnNewExpense = document.getElementById('btnNewExpense');
@@ -744,7 +922,7 @@
                 btnNewExpense.style.display = 'none';
                 btnToggleSold.innerHTML = '<i class="ph-bold ph-arrow-u-up-left"></i> Reverter Venda';
                 btnToggleSold.classList.remove('success');
-                btnToggleSold.classList.add('danger'); // Deixa vermelho alertando a reversão
+                btnToggleSold.classList.add('danger'); 
                 btnToggleSold.style.borderColor = 'rgba(255, 0, 60, 0.4)';
                 btnToggleSold.style.color = 'var(--danger)';
             } else {
@@ -764,12 +942,11 @@
             
             try {
                 await updateDoc(doc(db, "users", currentUser.uid, "vehicles", currentVehicleId), { isSold: newStatus });
-                v.isSold = newStatus; // atualiza local
+                v.isSold = newStatus; 
                 updateSoldUI(newStatus);
             } catch(e) { console.error(e); alert("Erro ao atualizar status."); }
         };
 
-        // Função FIPE
         async function fetchCurrentFipe(config) {
             const fipeEl = document.getElementById('kpiFipeVal');
             fipeEl.innerHTML = '<span class="loading-fipe">BUSCANDO...</span>';
@@ -813,7 +990,6 @@
             if(!currentVehicleId) return;
             const method = document.getElementById('eMethod').value;
             
-            // Sanitização
             const desc = document.getElementById('eDesc').value.trim().toUpperCase();
             const amount = parseFloat(document.getElementById('eVal').value);
             const date = document.getElementById('eDate').value;
@@ -875,7 +1051,6 @@
             });
         }
 
-        // --- SISTEMA CUSTOMIZADO DE EXCLUSÃO (GASTOS) ---
         window.openConfirmDeleteModal = (id) => {
             expenseToDelete = id;
             openModal('deleteConfirmModal');
@@ -902,7 +1077,6 @@
             expenseToDelete = null;
         };
 
-        // --- SISTEMA CUSTOMIZADO DE EXCLUSÃO (VEÍCULOS) ---
         window.openConfirmDeleteVehicleModal = () => {
             openModal('deleteVehicleConfirmModal');
         };
@@ -916,7 +1090,6 @@
             btn.disabled = true;
 
             try { 
-                // Remove o veículo do banco
                 await deleteDoc(doc(db, "users", currentUser.uid, "vehicles", currentVehicleId)); 
                 closeModal('deleteVehicleConfirmModal');
                 backToGarage();
@@ -928,7 +1101,366 @@
             btn.innerHTML = originalText;
             btn.disabled = false;
         };
+    </script>
 
+    <!-- SCRIPTS DO RADIO BROWSER (Fast Resume Integration) -->
+    <script>
+        (() => {
+          'use strict';
+        
+          const config = {
+            apiServers: [
+              'https://de1.api.radio-browser.info',
+              'https://nl1.api.radio-browser.info',
+              'https://at1.api.radio-browser.info'
+            ],
+            appName: 'ViceFinanceRadio/1.0',
+            limit: 24,
+            defaultCountryCode: '',
+            defaultTag: ''
+          };
+        
+          const state = {
+            stations: [],
+            favorites: [],
+            startupRadio: null,
+            autoPlayEnabled: false,
+            startupPlayed: false,
+            current: null,
+            serverIndex: 0,
+            searchAbortController: null
+          };
+        
+          const $ = (selector) => document.querySelector(selector);
+          const els = {
+            form: $('#radio-search-form'),
+            query: $('#radio-query'),
+            country: $('#radio-country'),
+            tag: $('#radio-tag'),
+            limit: $('#radio-limit'),
+            status: $('#radio-status'),
+            results: $('#radio-results'),
+            favorites: $('#radio-favorites'),
+            player: $('#radio-player'),
+            nowPlaying: $('#radio-now-playing'),
+            nowPlayingMeta: $('#radio-now-playing-meta'),
+            nowPlayingIcon: $('#radio-now-playing-icon'),
+            stop: $('#radio-stop'),
+            volume: $('#radio-volume')
+          };
+
+          window.initUserRadio = (favorites, startupUuid, autoPlay) => {
+              state.favorites = favorites || [];
+              state.startupRadio = startupUuid || null;
+              state.autoPlayEnabled = autoPlay !== false; 
+              state.startupPlayed = false; 
+      
+              renderStations();
+              renderFavorites();
+      
+              if (!state.autoPlayEnabled && state.current) {
+                  stopStation(null, true); 
+              } else if (state.autoPlayEnabled && state.startupRadio && !state.current && !state.startupPlayed) {
+                  playStartupRadio();
+              }
+          };
+
+          window.resetRadio = () => {
+              stopStation(null, true);
+              state.favorites = [];
+              state.startupRadio = null;
+              state.autoPlayEnabled = false;
+              state.startupPlayed = false;
+              renderFavorites();
+              renderStations();
+          };
+        
+          function escapeHTML(value = '') {
+            return String(value).replace(/[&<>'"]/g, (char) => ({
+              '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[char]));
+          }
+        
+          function setStatus(message, isError = false) {
+            if(!els.status) return;
+            els.status.textContent = message;
+            els.status.classList.toggle('is-error', isError);
+          }
+        
+          function getCurrentServer() {
+            return config.apiServers[state.serverIndex % config.apiServers.length];
+          }
+        
+          async function apiRequest(path, params = {}) {
+            const query = new URLSearchParams(params);
+            const url = `${getCurrentServer()}${path}?${query.toString()}`;
+            const response = await fetch(url, {
+              headers: { Accept: 'application/json', 'User-Agent': config.appName },
+              signal: state.searchAbortController?.signal
+            });
+            if (!response.ok) throw new Error(`API HTTP ${response.status}`);
+            return response.json();
+          }
+        
+          async function searchStations(event) {
+            event?.preventDefault();
+            state.searchAbortController?.abort();
+            state.searchAbortController = new AbortController();
+            setStatus('A pesquisar estações…');
+        
+            const params = {
+              name: els.query.value.trim(),
+              countrycode: els.country.value.trim().toUpperCase(),
+              tag: els.tag.value.trim(),
+              order: 'clickcount',
+              reverse: 'true',
+              hidebroken: 'true',
+              limit: els.limit.value
+            };
+            Object.keys(params).forEach((key) => {
+              if (params[key] === '') delete params[key];
+            });
+        
+            try {
+              const stations = await apiRequest('/json/stations/search', params);
+              
+              state.stations = stations.filter((station) => {
+                  const streamUrl = station.url_resolved || station.url;
+                  return streamUrl && streamUrl.startsWith('https://');
+              });
+              
+              renderStations();
+              
+              if(state.stations.length === 0 && stations.length > 0) {
+                  setStatus(`Foram encontradas rádios, mas o GitHub bloqueou por não serem seguras (HTTP).`, true);
+              } else {
+                  setStatus(`${state.stations.length} estação(ões) encontrada(s).`);
+              }
+
+            } catch (error) {
+              if (error.name === 'AbortError') return;
+              state.serverIndex += 1;
+              if (state.serverIndex < config.apiServers.length) {
+                setStatus('Servidor indisponível. A tentar outro servidor…');
+                return searchStations();
+              }
+              setStatus('A conexão com a API falhou. Verifique a internet ou pause seu AdBlock.', true);
+            }
+          }
+        
+          function stationCard(station, isFavorite = false) {
+            const title = escapeHTML(station.name || 'Estação sem nome');
+            const tags = escapeHTML(station.tags || 'Sem género informado');
+            const country = escapeHTML(station.countrycode || station.country || '');
+            const icon = station.favicon ? escapeHTML(station.favicon) : '';
+            const isStartup = state.startupRadio === station.stationuuid;
+            
+            return `<article class="radio-card">
+              <div class="radio-card-icon">${icon ? `<img src="${icon}" alt="" loading="lazy" onerror="this.style.display='none'">` : '<i class="ph-bold ph-music-note"></i>'}</div>
+              <div class="radio-card-content">
+                <h3 title="${title}">${title}</h3>
+                <p>${country}${country && tags ? ' · ' : ''}${tags}</p>
+                <small>${escapeHTML(station.codec || 'Áudio')} ${station.bitrate ? `· ${station.bitrate} kbps` : ''}</small>
+              </div>
+              <div class="radio-card-actions">
+                <button class="button btn-primary" style="min-height: auto;" data-play="${escapeHTML(station.stationuuid)}">Ouvir</button>
+                <button class="button" style="min-height: auto; min-width: auto; padding: .4rem; background: transparent; color: var(--warning); border: none;" title="${isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}" aria-label="Favorito" data-favorite="${escapeHTML(station.stationuuid)}">${isFavorite ? '<i class="ph-fill ph-star"></i>' : '<i class="ph-bold ph-star"></i>'}</button>
+                <button class="button" style="min-height: auto; min-width: auto; padding: .4rem; background: transparent; color: var(--success); border: none;" title="${isStartup ? 'Remover Rádio Inicial' : 'Definir Rádio Inicial'}" aria-label="Startup" data-startup="${escapeHTML(station.stationuuid)}">${isStartup ? '<i class="ph-fill ph-push-pin" style="filter: drop-shadow(0 0 5px var(--success));"></i>' : '<i class="ph-bold ph-push-pin"></i>'}</button>
+              </div>
+            </article>`;
+          }
+        
+          function renderStations() {
+            els.results.innerHTML = state.stations.length
+              ? state.stations.map((station) => stationCard(station, isFavorite(station.stationuuid))).join('')
+              : '<p class="radio-empty-state">Nenhuma estação encontrada.</p>';
+          }
+        
+          function renderFavorites() {
+            els.favorites.innerHTML = state.favorites.length
+              ? state.favorites.map((station) => stationCard(station, true)).join('')
+              : '<p class="radio-empty-state">Ainda não tem favoritos.</p>';
+          }
+        
+          function isFavorite(uuid) {
+            return state.favorites.some((station) => station.stationuuid === uuid);
+          }
+        
+          function toggleFavorite(uuid) {
+            const station = [...state.stations, ...state.favorites].find((item) => item.stationuuid === uuid);
+            if (!station) return;
+            state.favorites = isFavorite(uuid)
+              ? state.favorites.filter((item) => item.stationuuid !== uuid)
+              : [...state.favorites, station];
+              
+            renderStations();
+            renderFavorites();
+            if (window.syncRadioToFirebase) window.syncRadioToFirebase(state);
+          }
+          
+          function toggleStartup(uuid) {
+            if (state.startupRadio === uuid) {
+                state.startupRadio = null;
+            } else {
+                state.startupRadio = uuid;
+                state.autoPlayEnabled = true;
+                localStorage.setItem('radioAutoPlay', 'true');
+            }
+            renderStations();
+            renderFavorites();
+            if (window.syncRadioToFirebase) window.syncRadioToFirebase(state);
+          }
+        
+          async function playStation(uuid) {
+            const station = [...state.stations, ...state.favorites].find((item) => item.stationuuid === uuid);
+            if (!station) return;
+            const streamUrl = station.url_resolved || station.url;
+            state.current = station;
+            els.player.src = streamUrl;
+            els.nowPlaying.textContent = station.name || 'A reproduzir';
+            els.nowPlayingMeta.textContent = `${station.countrycode || ''}${station.codec ? ` · ${station.codec}` : ''}`;
+            els.nowPlayingIcon.src = station.favicon || '';
+            els.nowPlayingIcon.alt = station.name || '';
+            try {
+              fetch(`${getCurrentServer()}/json/url/${encodeURIComponent(uuid)}`, { headers: { 'User-Agent': config.appName } }).catch(() => {});
+              
+              // SALVA DADOS PARA RETOMADA RÁPIDA (FAST RESUME)
+              localStorage.setItem('radioLastPlayingUuid', uuid);
+              localStorage.setItem('radioLastPlayingUrl', streamUrl);
+              localStorage.setItem('radioLastPlayingName', station.name || '');
+              localStorage.setItem('radioLastPlayingFavicon', station.favicon || '');
+
+              await els.player.play();
+              setStatus(`A reproduzir: ${station.name}`);
+              
+              const btnIcon = document.getElementById('radioBtnIcon');
+              const btnText = document.getElementById('radioBtnText');
+              if(btnIcon) btnIcon.className = 'ph-fill ph-speaker-high radio-playing-icon';
+              if(btnText) btnText.innerText = 'Tocando...';
+
+              state.autoPlayEnabled = true;
+              localStorage.setItem('radioAutoPlay', 'true');
+              if (window.syncRadioToFirebase) window.syncRadioToFirebase(state);
+
+            } catch (error) {
+              setStatus('O navegador bloqueou a reprodução automática. Clique novamente em “Ouvir”.', true);
+            }
+          }
+          
+          async function playStartupRadio() {
+            if (!state.startupRadio || state.startupPlayed || state.current || !state.autoPlayEnabled) {
+                state.startupPlayed = true; 
+                return;
+            }
+            
+            try {
+                let station = [...state.stations, ...state.favorites].find(s => s.stationuuid === state.startupRadio);
+                if (!station) {
+                    const res = await apiRequest('/json/stations/byuuid', { uuids: state.startupRadio });
+                    if (res && res.length > 0) {
+                        station = res[0];
+                        state.stations.push(station);
+                    }
+                }
+                
+                if (station) {
+                    await playStation(station.stationuuid);
+                    state.startupPlayed = true;
+                }
+            } catch (e) {
+                console.warn('Autoplay bloqueado pelo navegador. Aguardando interação na tela...', e);
+            }
+          }
+        
+          function stopStation(event, skipSync = false) {
+            if(event) {
+                event.preventDefault();
+                event.stopPropagation(); 
+            }
+
+            els.player.pause();
+            els.player.removeAttribute('src');
+            els.player.load();
+            state.current = null;
+            els.nowPlaying.textContent = 'Nenhuma estação selecionada';
+            els.nowPlayingMeta.textContent = '';
+            els.nowPlayingIcon.removeAttribute('src');
+
+            const btnIcon = document.getElementById('radioBtnIcon');
+            const btnText = document.getElementById('radioBtnText');
+            if(btnIcon) btnIcon.className = 'ph-bold ph-radio';
+            if(btnText) btnText.innerText = 'Rádio';
+
+            state.autoPlayEnabled = false;
+            state.startupPlayed = true; 
+            localStorage.setItem('radioAutoPlay', 'false');
+            
+            if (!skipSync && window.syncRadioToFirebase) {
+                window.syncRadioToFirebase(state);
+            }
+          }
+        
+          document.addEventListener('click', (event) => {
+            const playButton = event.target.closest('[data-play]');
+            const favoriteButton = event.target.closest('[data-favorite]');
+            const startupButton = event.target.closest('[data-startup]');
+            
+            if (playButton) {
+                state.startupPlayed = true;
+                playStation(playButton.dataset.play);
+            }
+            if (favoriteButton) toggleFavorite(favoriteButton.dataset.favorite);
+            if (startupButton) toggleStartup(startupButton.dataset.startup);
+            
+            if (!state.startupPlayed && !playButton && state.startupRadio && state.autoPlayEnabled) {
+                playStartupRadio();
+            }
+          });
+        
+          els.form.addEventListener('submit', searchStations);
+          els.stop.addEventListener('click', stopStation);
+          els.volume.addEventListener('input', () => { els.player.volume = Number(els.volume.value); });
+        
+          els.query.value = '';
+          els.tag.value = config.defaultTag;
+          els.country.value = config.defaultCountryCode;
+          els.player.volume = Number(els.volume.value);
+          renderFavorites();
+          searchStations();
+          
+          // ===============================================================
+          // FAST RESUME: Dispara instantaneamente antes do Firebase
+          // ===============================================================
+          const fastUrl = localStorage.getItem('radioLastPlayingUrl');
+          const autoPlayEnabledLocal = localStorage.getItem('radioAutoPlay') === 'true';
+
+          if (autoPlayEnabledLocal && fastUrl) {
+              els.player.src = fastUrl;
+              els.nowPlaying.textContent = localStorage.getItem('radioLastPlayingName') || 'A reproduzir';
+              els.nowPlayingIcon.src = localStorage.getItem('radioLastPlayingFavicon') || '';
+              
+              els.player.play().then(() => {
+                  state.startupPlayed = true;
+                  state.autoPlayEnabled = true;
+                  
+                  const btnIcon = document.getElementById('radioBtnIcon');
+                  const btnText = document.getElementById('radioBtnText');
+                  if(btnIcon) btnIcon.className = 'ph-fill ph-speaker-high radio-playing-icon';
+                  if(btnText) btnText.innerText = 'Tocando...';
+                  setStatus(`A reproduzir: ${localStorage.getItem('radioLastPlayingName')}`);
+                  
+                  state.current = { 
+                      stationuuid: localStorage.getItem('radioLastPlayingUuid'), 
+                      name: localStorage.getItem('radioLastPlayingName'), 
+                      url_resolved: fastUrl 
+                  };
+              }).catch(() => {
+                  console.warn("Autoplay nativo bloqueado. Aguardando clique na tela.");
+              });
+          } else {
+              setTimeout(playStartupRadio, 1500);
+          }
+        })();
     </script>
 </body>
 </html>

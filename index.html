@@ -1099,15 +1099,30 @@
         }
         
         @media (min-width: 701px) {
-            #col-expense .saas-table th:nth-child(1) { width: 3%; }
-            #col-expense .saas-table th:nth-child(2) { width: 32%; }
-            #col-expense .saas-table th:nth-child(3) { width: 11%; }
-            #col-expense .saas-table th:nth-child(4) { width: 11%; }
-            #col-expense .saas-table th:nth-child(5) { width: 11%; }
-            #col-expense .saas-table th:nth-child(6) { width: 12%; }
-            #col-expense .saas-table th:nth-child(7) { width: 20%; }
-            #col-expense .saas-table td.col-actions .action-group { display: flex; flex-wrap: nowrap; align-items: center; justify-content: flex-end; gap: 5px; width: max-content; margin-left: auto; }
-            #col-expense .saas-table td.col-actions .btn-act { flex: 0 0 26px; width: 26px; height: 26px; }
+            #col-income .saas-table th:nth-child(1), #col-expense .saas-table th:nth-child(1) { width: 3%; }
+            #col-income .saas-table th:nth-child(2), #col-expense .saas-table th:nth-child(2) { width: 32%; }
+            #col-income .saas-table th:nth-child(3), #col-expense .saas-table th:nth-child(3) { width: 11%; }
+            #col-income .saas-table th:nth-child(4), #col-expense .saas-table th:nth-child(4) { width: 11%; }
+            #col-income .saas-table th:nth-child(5), #col-expense .saas-table th:nth-child(5) { width: 11%; }
+            #col-income .saas-table th:nth-child(6), #col-expense .saas-table th:nth-child(6) { width: 12%; }
+            #col-income .saas-table th:nth-child(7), #col-expense .saas-table th:nth-child(7) { width: 20%; }
+            
+            #col-income .saas-table td.col-actions .action-group, 
+            #col-expense .saas-table td.col-actions .action-group { 
+                display: flex; 
+                flex-wrap: nowrap; 
+                align-items: center; 
+                justify-content: flex-end; 
+                gap: 5px; 
+                width: max-content; 
+                margin-left: auto; 
+            }
+            #col-income .saas-table td.col-actions .btn-act, 
+            #col-expense .saas-table td.col-actions .btn-act { 
+                flex: 0 0 26px; 
+                width: 26px; 
+                height: 26px; 
+            }
         }
     </style>
 </head>
