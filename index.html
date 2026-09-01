@@ -134,11 +134,11 @@
             background: url('photo1.jpg') center/cover fixed no-repeat, var(--bg-gradient); 
             color: var(--text-main); 
             height: 100vh; 
-            height: 100dvh; /* fallback */
+            height: 100dvh; 
             display: flex; 
             flex-direction: column; 
             overflow: hidden; 
-            font-size: clamp(0.8rem, 2vw, 0.9rem); /* Tamanho base fluido */
+            font-size: clamp(0.8rem, 2vw, 0.9rem); 
         }
 
         ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -352,7 +352,7 @@
             padding-bottom: 1.2rem;
         }
 
-        /* MODO MOBILE LIMPO — alternado por duplo clique em VICE FINANCE */
+        /* MODO MOBILE LIMPO */
         .mobile-dock { display: none; }
         body.mobile-mode { overflow: hidden; }
         body.mobile-mode #app-container { height: 100dvh; }
@@ -639,10 +639,6 @@
             white-space: nowrap; 
             text-transform: uppercase; 
         }
-        .resp-vitor { background: rgba(2, 132, 199, 0.1); color: #0284c7; border-color: rgba(2, 132, 199, 0.3); }
-        .resp-beatriz { background: rgba(219, 39, 119, 0.1); color: #db2777; border-color: rgba(219, 39, 119, 0.3); }
-        [data-theme="dark"] .resp-vitor { background: rgba(0, 243, 255, 0.15); color: #00f3ff; border-color: rgba(0, 243, 255, 0.3);}
-        [data-theme="dark"] .resp-beatriz { background: rgba(255, 42, 147, 0.15); color: #ff2a93; border-color: rgba(255, 42, 147, 0.3);}
 
         .curr-wrap { display: flex; justify-content: space-between; align-items: center; width: 100%; min-width: 70px; }
         .curr-sym { font-size: 0.65rem; font-weight: 800; opacity: 0.6; user-select: none; margin-right: 3px;}
@@ -883,6 +879,77 @@
             letter-spacing: 0.5px;
         }
 
+        /* ==========================================================
+           RADIO WIDGET (Adaptado e Minimalista)
+           ========================================================== */
+        @keyframes pulseAudio {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; filter: drop-shadow(0 0 8px var(--primary)); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .radio-playing-icon {
+            animation: pulseAudio 1.2s infinite;
+            color: var(--primary) !important;
+        }
+        .radio-widget-modal {
+            --rb-panel: var(--bg-panel);
+            --rb-panel-2: var(--btn-act-bg);
+            --rb-text: var(--text-main);
+            --rb-muted: var(--text-sec);
+            --rb-accent: var(--primary);
+            --rb-accent-2: var(--warning);
+            --rb-border: var(--border);
+            width: 100%;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            color: var(--rb-text);
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            font-family: inherit;
+        }
+        .radio-widget-modal *, .radio-widget-modal *::before, .radio-widget-modal *::after { box-sizing: border-box; }
+        .radio-header { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; margin-bottom:1.5rem; }
+        .radio-eyebrow { color:var(--rb-accent-2); font-size:.72rem; font-weight:800; letter-spacing:.14em; }
+        .radio-widget-modal h2 { margin:.35rem 0 .45rem; font-size:clamp(1.2rem, 3vw, 1.8rem); font-weight: 900; text-transform: uppercase;}
+        .radio-widget-modal p { color:var(--rb-muted); margin:0; font-size: 0.85rem;}
+        .radio-live-indicator { white-space:nowrap; padding:.55rem .8rem; color:var(--success); background:rgba(5, 150, 105, 0.1); border:1px solid rgba(5, 150, 105, 0.3); border-radius:8px; font-size:.8rem; font-weight:800; text-transform: uppercase;}
+        .radio-live-indicator span { display:inline-block; width:8px; height:8px; margin-right:.4rem; background:var(--success); border-radius:50%; box-shadow:0 0 0 4px rgba(5, 150, 105, 0.2); animation: pulseAudio 2s infinite;}
+        .radio-search-form { display:grid; grid-template-columns:2fr 100px 1fr 100px auto; gap:.75rem; align-items:end; padding:1rem; background:var(--table-th-bg); border:1px solid var(--rb-border); border-radius:12px; }
+        .radio-search-form label, .radio-volume { display:flex; flex-direction:column; gap:.4rem; }
+        .radio-search-form label span, .radio-volume label { color:var(--rb-muted); font-size:.75rem; font-weight:800; text-transform: uppercase;}
+        .radio-search-form input, .radio-search-form select { width:100%; height:38px; padding:0 .75rem; color:var(--rb-text); background:var(--input-bg); border:1px solid var(--rb-border); border-radius:8px; outline:none; font-family: inherit;}
+        .radio-search-form input:focus, .radio-search-form select:focus { border-color:var(--rb-accent); box-shadow:var(--focus-ring); }
+        .radio-search-form .button { min-height: 38px; }
+        .radio-status { min-height:1.4rem; margin:1rem 0; font-size:.85rem; font-weight: 600;}
+        .radio-status.is-error { color:var(--danger); }
+        .radio-layout { display:grid; grid-template-columns:minmax(0, 2fr) minmax(260px, 1fr); gap:1.25rem; }
+        .radio-section-title { margin:1rem 0 .75rem; font-size:0.9rem; font-weight: 800; text-transform: uppercase; color: var(--rb-text);}
+        .radio-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:.75rem; }
+        .radio-grid-favorites { grid-template-columns:1fr; }
+        .radio-card { display:grid; grid-template-columns:46px minmax(0, 1fr) auto; gap:.75rem; align-items:center; min-width:0; padding:.8rem; background:var(--rb-panel); border:1px solid var(--rb-border); border-radius:12px; transition: 0.2s;}
+        .radio-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .radio-card-icon, .radio-player-icon { display:grid; place-items:center; flex:none; width:46px; height:46px; color:var(--rb-accent-2); background:var(--rb-panel-2); border-radius:10px; overflow:hidden; font-size:1.35rem; }
+        .radio-card-icon img, .radio-player-icon img { width:100%; height:100%; object-fit:cover; }
+        .radio-card-content { min-width:0; }
+        .radio-card h3 { overflow:hidden; margin:0 0 .25rem; text-overflow:ellipsis; white-space:nowrap; font-size:.9rem; font-weight: 700;}
+        .radio-card p, .radio-card small { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:.7rem; }
+        .radio-card small { margin-top:.25rem; color:var(--rb-muted); font-weight: 600;}
+        .radio-card-actions { display:flex; align-items:center; gap:.25rem; }
+        .radio-card-actions .button-primary { padding:.4rem .6rem; font-size:.75rem; }
+        .radio-empty-state { padding:1rem; background:var(--table-th-bg); border:1px dashed var(--rb-border); border-radius:12px; font-size:.85rem; text-align: center; color: var(--rb-muted); font-weight: 600;}
+        .radio-player-bar { position:sticky; bottom:0; z-index:2; display:flex; align-items:center; gap:1rem; margin-top:1.5rem; padding:.8rem 1rem; background:var(--table-th-bg); border:1px solid var(--rb-border); border-radius:12px; backdrop-filter:var(--glass-blur); }
+        .radio-now-playing { display:flex; align-items:center; gap:.7rem; min-width:200px; }
+        .radio-now-playing strong, .radio-now-playing small { display:block; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .radio-now-playing strong { font-size:.85rem; font-weight: 800;}
+        .radio-now-playing small { margin-top:.2rem; color:var(--rb-muted); font-size:.72rem; font-weight: 600;}
+        .radio-player-bar audio { flex:1; min-width:150px; height:36px; border-radius: 8px;}
+        .radio-volume { flex-direction:row; align-items:center; gap:.5rem; }
+        .radio-volume label { display:none; }
+        .radio-volume input { width:80px; accent-color:var(--rb-accent); }
+        
+        @media (max-width: 850px) { .radio-search-form { grid-template-columns:repeat(2, 1fr); } .radio-search-form label:first-child { grid-column:span 2; } .radio-search-form .button { width:100%; } .radio-layout { grid-template-columns:1fr; } }
+        @media (max-width: 620px) { .radio-header { flex-direction:column; } .radio-grid { grid-template-columns:1fr; } .radio-player-bar { align-items:stretch; flex-direction:column; } .radio-now-playing { min-width:0; } .radio-now-playing strong, .radio-now-playing small { max-width:calc(100vw - 100px); } .radio-volume { justify-content:space-between; } .radio-volume label { display:block; } .radio-volume input { flex:1; } }
+
         /* ========== AJUSTES RESPONSIVOS ADICIONAIS ========== */
         
         /* Telas médias (tablets e notebooks pequenos) */
@@ -949,320 +1016,88 @@
             .select-sm { padding: 0.3rem 0.4rem; font-size: 0.65rem; }
         }
 
-        /* Ajuste para esconder textos de botões muito longos em telas pequenas (opcional) */
         @media (max-width: 600px) {
-            .btn-icon-text span, .btn-header-link span, .btn-add span {
-                /* Se quiser esconder textos, descomente a linha abaixo */
-                /* display: none; */
-            }
             .btn-icon-text, .btn-add, .btn-header-link { font-size: 0.7rem; }
         }
 
-        /* Ajustes finais do modo mobile: filtros, ações e cartões interativos */
         @media (max-width: 700px) {
             body.mobile-mode .brand::after { display: none; content: none; }
             body.mobile-mode header { flex-wrap: wrap; padding-bottom: .65rem; }
-            body.mobile-mode .btn-header-link {
-                width: auto;
-                min-width: 108px;
-                height: 38px;
-                padding: 0 .75rem;
-                gap: .35rem;
-                font-size: .66rem;
-                border-radius: 10px;
-            }
+            body.mobile-mode .btn-header-link { width: auto; min-width: 108px; height: 38px; padding: 0 .75rem; gap: .35rem; font-size: .66rem; border-radius: 10px; }
             body.mobile-mode .btn-header-link i { font-size: 1.15rem !important; }
-            body.mobile-mode .top-actions {
-                display: grid;
-                grid-template-columns: minmax(0, 1.35fr) minmax(76px, .65fr);
-                width: 100%;
-                order: 3;
-                gap: .45rem;
-                padding-top: .6rem;
-                border-top: 1px solid var(--border);
-            }
-            body.mobile-mode .top-actions .select-sm {
-                width: 100%;
-                min-width: 0;
-                height: 38px;
-                padding: .45rem .55rem;
-                font-size: .67rem;
-            }
-            body.mobile-mode .top-actions #btnReport {
-                display: flex;
-                width: 100%;
-                height: 38px;
-                padding: .35rem .45rem;
-                font-size: .62rem;
-            }
-            body.mobile-mode .top-actions #btnLockMonth,
-            body.mobile-mode .top-actions #btnThemeToggle,
-            body.mobile-mode .top-actions #btnImport,
-            body.mobile-mode .top-actions button[onclick="openSettingsModal()"],
-            body.mobile-mode .top-actions button[onclick="openProfileModal()"],
-            body.mobile-mode .top-actions .btn-logout { display: none; }
-            body.mobile-mode #col-income .saas-table td.col-actions,
-            body.mobile-mode #col-expense .saas-table td.col-actions {
-                display: block !important;
-                grid-column: 1 / -1;
-                padding-top: .65rem;
-                border-top: 1px solid var(--border-light);
-            }
-            body.mobile-mode #col-income .saas-table .action-group,
-            body.mobile-mode #col-expense .saas-table .action-group {
-                display: grid;
-                grid-template-columns: repeat(5, minmax(0, 1fr));
-                gap: .4rem;
-                width: 100%;
-            }
-            body.mobile-mode #col-income .saas-table .action-group .btn-act,
-            body.mobile-mode #col-expense .saas-table .action-group .btn-act {
-                width: 100%;
-                height: 34px;
-                border-radius: 8px;
-                font-size: .95rem;
-            }
+            body.mobile-mode .top-actions { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(76px, .65fr) minmax(76px, .65fr); width: 100%; order: 3; gap: .45rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+            body.mobile-mode .top-actions .select-sm { width: 100%; min-width: 0; height: 38px; padding: .45rem .55rem; font-size: .67rem; }
+            body.mobile-mode .top-actions #btnReport { display: flex; width: 100%; height: 38px; padding: .35rem .45rem; font-size: .62rem; }
+            body.mobile-mode .top-actions #btnOpenRadio { display: flex; width: 100%; height: 38px; padding: .35rem .45rem; font-size: .62rem; justify-content: center; }
+            body.mobile-mode .top-actions #btnLockMonth, body.mobile-mode .top-actions #btnThemeToggle, body.mobile-mode .top-actions #btnImport, body.mobile-mode .top-actions button[onclick="openSettingsModal()"], body.mobile-mode .top-actions button[onclick="openProfileModal()"], body.mobile-mode .top-actions .btn-logout { display: none; }
+            
+            body.mobile-mode #col-income .saas-table td.col-actions, body.mobile-mode #col-expense .saas-table td.col-actions { display: block !important; grid-column: 1 / -1; padding-top: .65rem; border-top: 1px solid var(--border-light); }
+            body.mobile-mode #col-income .saas-table .action-group, body.mobile-mode #col-expense .saas-table .action-group { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .4rem; width: 100%; }
+            body.mobile-mode #col-income .saas-table .action-group .btn-act, body.mobile-mode #col-expense .saas-table .action-group .btn-act { width: 100%; height: 34px; border-radius: 8px; font-size: .95rem; }
         }
 
-        /* ========== CORREÇÃO PARA EVITAR CORTE DA TABELA DE SAÍDAS EM MONITORES GRANDES ========== */
-        /* Aplica table-layout: fixed para que as colunas respeitem a largura definida */
-        .saas-table {
-            table-layout: fixed;
-        }
+        .saas-table { table-layout: fixed; }
+        .saas-table th:nth-child(1) { width: 3%; }   
+        .saas-table th:nth-child(2) { width: 35%; }  
+        .saas-table th:nth-child(3) { width: 12%; }  
+        .saas-table th:nth-child(4) { width: 12%; }  
+        .saas-table th:nth-child(5) { width: 12%; }  
+        .saas-table th:nth-child(6) { width: 12%; }  
+        .saas-table th:nth-child(7) { width: 14%; }  
         
-        /* Larguras percentuais para as colunas das tabelas de entradas e saídas */
-        .saas-table th:nth-child(1) { width: 3%; }   /* arrasto */
-        .saas-table th:nth-child(2) { width: 35%; }  /* descrição */
-        .saas-table th:nth-child(3) { width: 12%; }  /* status */
-        .saas-table th:nth-child(4) { width: 12%; }  /* total */
-        .saas-table th:nth-child(5) { width: 12%; }  /* recebido/pago */
-        .saas-table th:nth-child(6) { width: 12%; }  /* saldo */
-        .saas-table th:nth-child(7) { width: 14%; }  /* ações */
+        #col-debts .saas-table th:nth-child(1) { width: 30%; } 
+        #col-debts .saas-table th:nth-child(2) { width: 12%; } 
+        #col-debts .saas-table th:nth-child(3) { width: 10%; } 
+        #col-debts .saas-table th:nth-child(4) { width: 15%; } 
+        #col-debts .saas-table th:nth-child(5) { width: 15%; } 
+        #col-debts .saas-table th:nth-child(6) { width: 12%; } 
+        #col-debts .saas-table th:nth-child(7) { width: 6%; }  
+
+        .td-desc { max-width: none; width: 100%; }
         
-        /* Para a tabela de dívidas (colunas diferentes) */
-        #col-debts .saas-table th:nth-child(1) { width: 30%; } /* descrição */
-        #col-debts .saas-table th:nth-child(2) { width: 12%; } /* data origem */
-        #col-debts .saas-table th:nth-child(3) { width: 10%; } /* status */
-        #col-debts .saas-table th:nth-child(4) { width: 15%; } /* total dívida */
-        #col-debts .saas-table th:nth-child(5) { width: 15%; } /* total pago */
-        #col-debts .saas-table th:nth-child(6) { width: 12%; } /* saldo devedor */
-        #col-debts .saas-table th:nth-child(7) { width: 6%; }  /* ações */
-
-        /* Remove limite máximo da descrição para ela ocupar o espaço disponível em telas grandes */
-        .td-desc {
-            max-width: none;
-            width: 100%;
-        }
+        @media (min-width: 1024px) { .table-responsive { overflow-x: visible; } }
+        @media (max-width: 1023px) { .table-responsive { overflow-x: auto; } }
+        @media (min-width: 1400px) { .saas-table th:nth-child(2) { width: 40%; } .saas-table th:nth-child(7) { width: 10%; } .td-desc { max-width: none; } }
         
-        /* Em telas grandes (>= 1024px), evita scroll horizontal se a tabela couber */
-        @media (min-width: 1024px) {
-            .table-responsive {
-                overflow-x: visible;
-            }
-        }
-
-        /* Em telas menores, mantém scroll horizontal */
-        @media (max-width: 1023px) {
-            .table-responsive {
-                overflow-x: auto;
-            }
-        }
-
-        /* Ajuste fino para monitores muito largos (>= 1400px) */
-        @media (min-width: 1400px) {
-            .saas-table th:nth-child(2) { width: 40%; } /* aumenta descrição */
-            .saas-table th:nth-child(7) { width: 10%; } /* reduz ações */
-            .td-desc { max-width: none; }
-        }
-        /* Correção final mobile: linhas de entradas e saídas em cartões independentes */
         @media (max-width: 700px) {
-            body.mobile-mode #col-income .table-responsive,
-            body.mobile-mode #col-expense .table-responsive { overflow: visible; }
-            body.mobile-mode #col-income .saas-table,
-            body.mobile-mode #col-expense .saas-table,
-            body.mobile-mode #col-income .saas-table tbody,
-            body.mobile-mode #col-expense .saas-table tbody { display: block; min-width: 0; width: 100%; }
-            body.mobile-mode #col-income .saas-table thead,
-            body.mobile-mode #col-expense .saas-table thead { display: none; }
-            body.mobile-mode #col-income .saas-table tr,
-            body.mobile-mode #col-expense .saas-table tr {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: .55rem;
-                margin: .6rem;
-                padding: .85rem;
-                border: 1px solid var(--border);
-                border-radius: 12px;
-                background: rgba(0,0,0,.12);
-                box-shadow: 0 4px 12px rgba(0,0,0,.12);
-            }
-            body.mobile-mode #col-income .saas-table tr:first-child,
-            body.mobile-mode #col-expense .saas-table tr:first-child { margin-top: .7rem; }
-            body.mobile-mode #col-income .saas-table td,
-            body.mobile-mode #col-expense .saas-table td {
-                display: block;
-                min-width: 0;
-                padding: 0;
-                border: 0;
-                text-align: left;
-            }
-            body.mobile-mode #col-income .saas-table td:nth-child(1),
-            body.mobile-mode #col-expense .saas-table td:nth-child(1) { display: none; }
-            body.mobile-mode #col-income .saas-table td:nth-child(2),
-            body.mobile-mode #col-expense .saas-table td:nth-child(2) { grid-column: 1 / -1; }
-            body.mobile-mode #col-income .saas-table td:nth-child(3),
-            body.mobile-mode #col-expense .saas-table td:nth-child(3) { grid-column: 1 / -1; padding-top: .15rem; }
-            body.mobile-mode #col-income .saas-table td:nth-child(3)::before,
-            body.mobile-mode #col-expense .saas-table td:nth-child(3)::before {
-                content: 'Status';
-                display: block;
-                margin-bottom: .25rem;
-                color: var(--text-sec);
-                font-size: .52rem;
-                font-weight: 800;
-                letter-spacing: .45px;
-                text-transform: uppercase;
-            }
-            body.mobile-mode #col-income .saas-table td:nth-child(4),
-            body.mobile-mode #col-income .saas-table td:nth-child(5),
-            body.mobile-mode #col-income .saas-table td:nth-child(6),
-            body.mobile-mode #col-expense .saas-table td:nth-child(4),
-            body.mobile-mode #col-expense .saas-table td:nth-child(5),
-            body.mobile-mode #col-expense .saas-table td:nth-child(6) {
-                padding: .5rem .45rem .35rem;
-                border-top: 1px solid var(--border-light);
-                text-align: left;
-            }
-            body.mobile-mode #col-income .saas-table td:nth-child(4)::before,
-            body.mobile-mode #col-income .saas-table td:nth-child(5)::before,
-            body.mobile-mode #col-income .saas-table td:nth-child(6)::before,
-            body.mobile-mode #col-expense .saas-table td:nth-child(4)::before,
-            body.mobile-mode #col-expense .saas-table td:nth-child(5)::before,
-            body.mobile-mode #col-expense .saas-table td:nth-child(6)::before {
-                display: block;
-                margin-bottom: .25rem;
-                color: var(--text-sec);
-                font-size: .52rem;
-                font-weight: 800;
-                letter-spacing: .45px;
-                text-transform: uppercase;
-            }
-            body.mobile-mode #col-income .saas-table td:nth-child(4)::before,
-            body.mobile-mode #col-expense .saas-table td:nth-child(4)::before { content: 'Total'; }
-            body.mobile-mode #col-income .saas-table td:nth-child(5)::before,
-            body.mobile-mode #col-expense .saas-table td:nth-child(5)::before { content: 'Pago'; }
-            body.mobile-mode #col-income .saas-table td:nth-child(6)::before,
-            body.mobile-mode #col-expense .saas-table td:nth-child(6)::before { content: 'Saldo'; }
-            body.mobile-mode #col-income .saas-table td:nth-child(7),
-            body.mobile-mode #col-expense .saas-table td:nth-child(7) { display: none; }
-            body.mobile-mode #col-income .td-desc,
-            body.mobile-mode #col-expense .td-desc {
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                gap: .35rem .45rem;
-                max-width: none;
-                width: 100%;
-                line-height: 1.3;
-            }
-            body.mobile-mode #col-income .desc-text,
-            body.mobile-mode #col-expense .desc-text {
-                flex: 1 1 100%;
-                order: 2;
-                min-width: 0;
-                white-space: normal;
-                overflow: visible;
-                text-overflow: clip;
-                font-size: .85rem;
-                line-height: 1.3;
-            }
-            body.mobile-mode #col-income .date-span,
-            body.mobile-mode #col-expense .date-span { order: 1; }
-            body.mobile-mode #col-income .resp-badge,
-            body.mobile-mode #col-expense .resp-badge,
-            body.mobile-mode #col-income .cat-badge,
-            body.mobile-mode #col-expense .cat-badge,
-            body.mobile-mode #col-income .td-note,
-            body.mobile-mode #col-expense .td-note { order: 3; }
-            body.mobile-mode #col-income .status-badge,
-            body.mobile-mode #col-expense .status-badge { display: inline-flex; }
-            body.mobile-mode #col-income .curr-wrap,
-            body.mobile-mode #col-expense .curr-wrap { min-width: 0; width: 100%; justify-content: flex-start; gap: .1rem; }
-            body.mobile-mode #col-income .curr-num,
-            body.mobile-mode #col-expense .curr-num { text-align: left; font-size: .78rem; }
+            body.mobile-mode #col-income .table-responsive, body.mobile-mode #col-expense .table-responsive { overflow: visible; }
+            body.mobile-mode #col-income .saas-table, body.mobile-mode #col-expense .saas-table, body.mobile-mode #col-income .saas-table tbody, body.mobile-mode #col-expense .saas-table tbody { display: block; min-width: 0; width: 100%; }
+            body.mobile-mode #col-income .saas-table thead, body.mobile-mode #col-expense .saas-table thead { display: none; }
+            body.mobile-mode #col-income .saas-table tr, body.mobile-mode #col-expense .saas-table tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; margin: .6rem; padding: .85rem; border: 1px solid var(--border); border-radius: 12px; background: rgba(0,0,0,.12); box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+            body.mobile-mode #col-income .saas-table tr:first-child, body.mobile-mode #col-expense .saas-table tr:first-child { margin-top: .7rem; }
+            body.mobile-mode #col-income .saas-table td, body.mobile-mode #col-expense .saas-table td { display: block; min-width: 0; padding: 0; border: 0; text-align: left; }
+            body.mobile-mode #col-income .saas-table td:nth-child(1), body.mobile-mode #col-expense .saas-table td:nth-child(1) { display: none; }
+            body.mobile-mode #col-income .saas-table td:nth-child(2), body.mobile-mode #col-expense .saas-table td:nth-child(2) { grid-column: 1 / -1; }
+            body.mobile-mode #col-income .saas-table td:nth-child(3), body.mobile-mode #col-expense .saas-table td:nth-child(3) { grid-column: 1 / -1; padding-top: .15rem; }
+            body.mobile-mode #col-income .saas-table td:nth-child(3)::before, body.mobile-mode #col-expense .saas-table td:nth-child(3)::before { content: 'Status'; display: block; margin-bottom: .25rem; color: var(--text-sec); font-size: .52rem; font-weight: 800; letter-spacing: .45px; text-transform: uppercase; }
+            body.mobile-mode #col-income .saas-table td:nth-child(4), body.mobile-mode #col-income .saas-table td:nth-child(5), body.mobile-mode #col-income .saas-table td:nth-child(6), body.mobile-mode #col-expense .saas-table td:nth-child(4), body.mobile-mode #col-expense .saas-table td:nth-child(5), body.mobile-mode #col-expense .saas-table td:nth-child(6) { padding: .5rem .45rem .35rem; border-top: 1px solid var(--border-light); text-align: left; }
+            body.mobile-mode #col-income .saas-table td:nth-child(4)::before, body.mobile-mode #col-income .saas-table td:nth-child(5)::before, body.mobile-mode #col-income .saas-table td:nth-child(6)::before, body.mobile-mode #col-expense .saas-table td:nth-child(4)::before, body.mobile-mode #col-expense .saas-table td:nth-child(5)::before, body.mobile-mode #col-expense .saas-table td:nth-child(6)::before { display: block; margin-bottom: .25rem; color: var(--text-sec); font-size: .52rem; font-weight: 800; letter-spacing: .45px; text-transform: uppercase; }
+            body.mobile-mode #col-income .saas-table td:nth-child(4)::before, body.mobile-mode #col-expense .saas-table td:nth-child(4)::before { content: 'Total'; }
+            body.mobile-mode #col-income .saas-table td:nth-child(5)::before, body.mobile-mode #col-expense .saas-table td:nth-child(5)::before { content: 'Pago'; }
+            body.mobile-mode #col-income .saas-table td:nth-child(6)::before, body.mobile-mode #col-expense .saas-table td:nth-child(6)::before { content: 'Saldo'; }
+            body.mobile-mode #col-income .saas-table td:nth-child(7), body.mobile-mode #col-expense .saas-table td:nth-child(7) { display: none; }
+            body.mobile-mode #col-income .td-desc, body.mobile-mode #col-expense .td-desc { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem .45rem; max-width: none; width: 100%; line-height: 1.3; }
+            body.mobile-mode #col-income .desc-text, body.mobile-mode #col-expense .desc-text { flex: 1 1 100%; order: 2; min-width: 0; white-space: normal; overflow: visible; text-overflow: clip; font-size: .85rem; line-height: 1.3; }
+            body.mobile-mode #col-income .date-span, body.mobile-mode #col-expense .date-span { order: 1; }
+            body.mobile-mode #col-income .resp-badge, body.mobile-mode #col-expense .resp-badge, body.mobile-mode #col-income .cat-badge, body.mobile-mode #col-expense .cat-badge, body.mobile-mode #col-income .td-note, body.mobile-mode #col-expense .td-note { order: 3; }
+            body.mobile-mode #col-income .status-badge, body.mobile-mode #col-expense .status-badge { display: inline-flex; }
+            body.mobile-mode #col-income .curr-wrap, body.mobile-mode #col-expense .curr-wrap { min-width: 0; width: 100%; justify-content: flex-start; gap: .1rem; }
+            body.mobile-mode #col-income .curr-num, body.mobile-mode #col-expense .curr-num { text-align: left; font-size: .78rem; }
         }
-        /* Correção do cabeçalho mobile: fluxo normal e controlos compactos */
+        
         @media (max-width: 700px) {
-            body.mobile-mode header {
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-                justify-content: flex-start;
-                gap: .55rem;
-                padding: .7rem .7rem .6rem;
-            }
-            body.mobile-mode .brand {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                width: 100%;
-                padding: 0;
-                gap: .45rem;
-            }
-            body.mobile-mode .brand > div {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-                min-height: 28px;
-            }
+            body.mobile-mode header { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: .55rem; padding: .7rem .7rem .6rem; }
+            body.mobile-mode .brand { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; padding: 0; gap: .45rem; }
+            body.mobile-mode .brand > div { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 28px; }
             body.mobile-mode .brand i { font-size: 1.2rem; }
-            body.mobile-mode .btn-header-link {
-                position: static;
-                align-self: center;
-                width: 116px;
-                min-width: 116px;
-                height: 34px;
-                margin: 0;
-                padding: 0 .65rem;
-                border-radius: 9px;
-                font-size: .64rem;
-                gap: .3rem;
-            }
+            body.mobile-mode .btn-header-link { position: static; align-self: center; width: 116px; min-width: 116px; height: 34px; margin: 0; padding: 0 .65rem; border-radius: 9px; font-size: .64rem; gap: .3rem; }
             body.mobile-mode .btn-header-link i { font-size: 1rem !important; }
-            body.mobile-mode .top-actions {
-                display: grid;
-                grid-template-columns: minmax(0, 1fr) 72px 88px;
-                align-items: center;
-                width: 100%;
-                max-width: 360px;
-                margin: 0 auto;
-                order: initial;
-                gap: .4rem;
-                padding-top: .55rem;
-                border-top: 1px solid var(--border);
-            }
-            body.mobile-mode .top-actions .select-sm {
-                width: 100%;
-                min-width: 0;
-                height: 34px;
-                padding: .35rem .45rem;
-                font-size: .62rem;
-            }
-            body.mobile-mode .top-actions #btnReport {
-                display: flex;
-                width: 88px;
-                min-width: 0;
-                height: 34px;
-                padding: .3rem .35rem;
-                gap: .25rem;
-                font-size: .58rem;
-                justify-content: center;
-            }
+            body.mobile-mode .top-actions { display: grid; grid-template-columns: minmax(0, 1fr) 72px 88px 88px; align-items: center; width: 100%; max-width: 440px; margin: 0 auto; order: initial; gap: .4rem; padding-top: .55rem; border-top: 1px solid var(--border); }
+            body.mobile-mode .top-actions .select-sm { width: 100%; min-width: 0; height: 34px; padding: .35rem .45rem; font-size: .62rem; }
+            body.mobile-mode .top-actions #btnReport { display: flex; width: 88px; min-width: 0; height: 34px; padding: .3rem .35rem; gap: .25rem; font-size: .58rem; justify-content: center; }
             body.mobile-mode .top-actions #btnReport i { font-size: .8rem; }
         }
-        /* Correção exclusiva para desktop: ações de saídas sempre lado a lado */
+        
         @media (min-width: 701px) {
             #col-expense .saas-table th:nth-child(1) { width: 3%; }
             #col-expense .saas-table th:nth-child(2) { width: 32%; }
@@ -1271,20 +1106,8 @@
             #col-expense .saas-table th:nth-child(5) { width: 11%; }
             #col-expense .saas-table th:nth-child(6) { width: 12%; }
             #col-expense .saas-table th:nth-child(7) { width: 20%; }
-            #col-expense .saas-table td.col-actions .action-group {
-                display: flex;
-                flex-wrap: nowrap;
-                align-items: center;
-                justify-content: flex-end;
-                gap: 5px;
-                width: max-content;
-                margin-left: auto;
-            }
-            #col-expense .saas-table td.col-actions .btn-act {
-                flex: 0 0 26px;
-                width: 26px;
-                height: 26px;
-            }
+            #col-expense .saas-table td.col-actions .action-group { display: flex; flex-wrap: nowrap; align-items: center; justify-content: flex-end; gap: 5px; width: max-content; margin-left: auto; }
+            #col-expense .saas-table td.col-actions .btn-act { flex: 0 0 26px; width: 26px; height: 26px; }
         }
     </style>
 </head>
@@ -1292,9 +1115,7 @@
 
     <div id="gta-loader">
         <div class="loader-content">
-            <!-- AQUI FICA A TAG DO GIF -->
             <img src="gta-loading.gif" alt="Carregando..." class="gta-gif">
-            
             <h2 class="loader-text">CARREGANDO DADOS...</h2>
             <div class="loader-tips">DICA: Carregando banco de dados de Leonida...</div>
         </div>
@@ -1323,8 +1144,13 @@
                 <select id="respSelect" class="select-sm resp-select" title="Filtrar por Responsável">
                     <option value="Todos">Todos</option>
                 </select>
-
                 <select id="yearSelect" class="select-sm"></select>
+                
+                <!-- BOTÃO MINIMALISTA DO RÁDIO -->
+                <button class="btn-icon-text" id="btnOpenRadio" onclick="openRadioModal()" style="color: var(--warning); border-color: rgba(234, 88, 12, 0.4); background: rgba(234, 88, 12, 0.1);">
+                    <i class="ph-bold ph-radio" id="radioBtnIcon"></i> <span id="radioBtnText">Rádio</span>
+                </button>
+                
                 <button class="btn-icon-text" id="btnReport" onclick="openReportModal()" style="color: var(--kpi-saldo-color); border-color: rgba(0, 243, 255, 0.4); background: rgba(0, 243, 255, 0.1);"><i class="ph-bold ph-file-pdf"></i> Dossiê</button>
                 <button class="btn-icon-text" id="btnLockMonth" onclick="toggleMonthLock()"><i class="ph-bold ph-lock-open"></i> Mês Aberto</button>
                 <button class="btn-icon-text" id="btnThemeToggle" onclick="toggleTheme()"><i class="ph-bold ph-sun"></i> Modo Claro</button>
@@ -1486,7 +1312,7 @@
         </nav>
     </div>
 
-    <!-- Modais -->
+    <!-- Modais do Vice Finance -->
     <div class="modal" id="transactionModal">
         <div class="modal-content">
             <div class="modal-header"><span id="modalTitle">Lançamento</span><button class="btn-close" onclick="closeModal('transactionModal')"><i class="ph-bold ph-x"></i></button></div>
@@ -1503,9 +1329,7 @@
 
                 <div class="form-group">
                     <label>Responsável <span style="color: var(--danger);">*</span></label>
-                    <select id="tResponsible" class="form-control">
-                        <!-- Carregado Dinamicamente -->
-                    </select>
+                    <select id="tResponsible" class="form-control"></select>
                 </div>
                 
                 <div class="form-group" id="groupCategory" style="display: none;">
@@ -1637,9 +1461,7 @@
                         <button class="btn btn-primary" onclick="addCategory()" style="width: auto; flex-shrink: 0;"><i class="ph-bold ph-plus"></i></button>
                     </div>
                 </div>
-                
                 <hr style="border-color: var(--border); margin-bottom: 15px;">
-                
                 <h4 style="margin-bottom: 10px; font-size: 0.95rem; font-weight: 800; color: var(--text-main); text-transform: uppercase;">Responsáveis</h4>
                 <p style="font-size: 0.8rem; color: var(--text-sec); margin-bottom: 15px; font-weight: 500;">Cadastre as pessoas vinculadas às transações.</p>
                 <div class="history-list" id="respList" style="max-height: 150px; margin-bottom: 0;"></div>
@@ -1652,6 +1474,81 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="closeModal('settingsModal')">Fechar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MODAL DO RADIO BROWSER (Minimalista e Oculto) -->
+    <div class="modal" id="radioModal">
+        <div class="modal-content" style="max-width: 950px; border-radius: 16px;">
+            <div class="modal-header">
+                <span style="color: var(--primary);"><i class="ph-bold ph-radio"></i> Estúdio de Rádio</span>
+                <button class="btn-close" onclick="closeModal('radioModal')"><i class="ph-bold ph-x"></i></button>
+            </div>
+            <div class="modal-body" style="padding: 0; max-height: 80vh; overflow-y: auto;">
+                <section id="radio-browser-widget" class="radio-widget-modal" aria-label="Rádio online">
+                  <div class="radio-header">
+                    <div>
+                      <span class="radio-eyebrow">RÁDIO ONLINE</span>
+                      <h2>Encontre uma estação</h2>
+                      <p>Pesquise por nome, país ou género e comece a ouvir.</p>
+                    </div>
+                    <div class="radio-live-indicator"><span></span> Ao vivo</div>
+                  </div>
+                
+                  <form id="radio-search-form" class="radio-search-form">
+                    <label>
+                      <span>Nome ou palavra-chave</span>
+                      <input id="radio-query" type="search" placeholder="Ex.: jazz, rock, notícias" autocomplete="off">
+                    </label>
+                    <label>
+                      <span>País</span>
+                      <input id="radio-country" type="text" maxlength="2" placeholder="BR" aria-label="Código do país ISO de duas letras">
+                    </label>
+                    <label>
+                      <span>Género</span>
+                      <input id="radio-tag" type="text" placeholder="Ex.: pop">
+                    </label>
+                    <label>
+                      <span>Resultados</span>
+                      <select id="radio-limit">
+                        <option value="12">12</option>
+                        <option value="24" selected>24</option>
+                        <option value="48">48</option>
+                      </select>
+                    </label>
+                    <button class="button btn-primary" type="submit">Pesquisar</button>
+                  </form>
+                
+                  <p id="radio-status" class="radio-status" role="status">A carregar estações…</p>
+                
+                  <div class="radio-layout">
+                    <main>
+                      <h3 class="radio-section-title">Estações encontradas</h3>
+                      <div id="radio-results" class="radio-grid"></div>
+                    </main>
+                    <aside>
+                      <h3 class="radio-section-title">Os meus favoritos</h3>
+                      <div id="radio-favorites" class="radio-grid radio-grid-favorites"></div>
+                    </aside>
+                  </div>
+                
+                  <div class="radio-player-bar">
+                    <div class="radio-now-playing">
+                      <div class="radio-player-icon"><img id="radio-now-playing-icon" alt=""></div>
+                      <div>
+                        <strong id="radio-now-playing">Nenhuma estação selecionada</strong>
+                        <small id="radio-now-playing-meta"></small>
+                      </div>
+                    </div>
+                    <audio id="radio-player" controls preload="none"></audio>
+                    <div class="radio-volume">
+                      <label for="radio-volume">Volume</label>
+                      <input id="radio-volume" type="range" min="0" max="1" step="0.05" value="0.8">
+                      <button id="radio-stop" class="button btn-secondary" type="button" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Parar</button>
+                    </div>
+                  </div>
+                </section>
             </div>
         </div>
     </div>
@@ -1695,10 +1592,9 @@
         window.currentChartTab = 'month';
         window.isNavigating = false; 
 
-        // Lógica para carregar frases externas
         let systemTips = [
             "Em Leonida, o dinheiro fala mais alto que as armas. Quase sempre.",
-            "Mantenha a revisão da sua MT-03 em dia para evitar surpresas nas fugas por Leonida."
+            "Mantenha a revisão da sua Honda Bros 160 em dia para evitar surpresas nas fugas por Leonida."
         ];
 
         async function loadExternalTips() {
@@ -1722,7 +1618,6 @@
         
         loadExternalTips();
 
-        // ALGORITMO PARA GERAR COR NEON BASEADO NO NOME DO RESPONSAVEL
         function getNeonColor(name) {
             if(!name) return { color: "var(--text-main)", bg: "var(--btn-act-bg)" };
             let hash = 0;
@@ -1747,6 +1642,10 @@
             setTimeout(() => {
                 window.location.href = 'indexgaragem.html';
             }, 3000); 
+        };
+        
+        window.openRadioModal = () => {
+            document.getElementById('radioModal').style.display = 'flex';
         };
 
         window.showChartTab = (tab) => {
@@ -2250,7 +2149,6 @@
             } catch(e) { console.error(e); alert("Erro ao remover categoria."); }
         };
 
-        // ========== LÓGICA DE RESPONSÁVEIS ==========
         window.renderRespList = () => {
             const container = document.getElementById('respList');
             container.innerHTML = '';
@@ -2316,7 +2214,6 @@
                 else if (window.responsiblesList.length > 0) formSel.value = window.responsiblesList[0];
             }
         };
-        // ============================================
 
         function initApp() {
             const rSel = document.getElementById('respSelect');
@@ -2685,7 +2582,6 @@
                             catBadge = `<span class="cat-badge">${t.category}</span>`;
                         }
 
-                        // === GERADOR DE COR NEON DINÂMICO PARA OS RESPONSÁVEIS ===
                         let respBadge = '';
                         if (window.currentRespFilter === 'Todos' && t.responsible) {
                             const neonStyles = getNeonColor(t.responsible);
@@ -2952,7 +2848,6 @@
             document.getElementById('tValue').value = ''; 
             document.getElementById('tNote').value = '';
 
-            // Se o filtro global for um responsável válido, preenche o modal com ele
             if (window.responsiblesList.includes(window.currentRespFilter)) {
                 document.getElementById('tResponsible').value = window.currentRespFilter;
             } else if (window.responsiblesList.length > 0) {
@@ -3174,7 +3069,7 @@
             await batch.commit();
             alert("Registros importados com sucesso!");
         };
-        // Alternância manual do modo mobile por duplo clique na marca.
+        
         (() => {
             const brand = document.getElementById('viceBrand');
             const mobileKey = 'vice-finance-mobile-mode';
@@ -3191,6 +3086,288 @@
                 }
             });
             window.setMobileMode = setMobileMode;
+        })();
+    </script>
+
+    <!-- SCRIPTS DO RADIO BROWSER INCORPORADOS E CONECTADOS COM A UI DO VICE FINANCE -->
+    <script>
+        (() => {
+          'use strict';
+        
+          const config = {
+            apiServers: [
+              'https://de1.api.radio-browser.info',
+              'https://nl1.api.radio-browser.info',
+              'https://at1.api.radio-browser.info'
+            ],
+            appName: 'ViceFinanceRadio/1.0',
+            limit: 24,
+            defaultCountryCode: '',
+            defaultTag: ''
+          };
+        
+          const state = {
+            stations: [],
+            favorites: JSON.parse(localStorage.getItem('radioFavorites') || '[]'),
+            startupRadio: localStorage.getItem('radioStartup') || null,
+            autoPlayEnabled: localStorage.getItem('radioAutoPlay') !== 'false', // VERIFICA O ULTIMO ESTADO (padrão true se existir uma rádio fixada)
+            startupPlayed: false,
+            current: null,
+            serverIndex: 0,
+            searchAbortController: null
+          };
+        
+          const $ = (selector) => document.querySelector(selector);
+          const els = {
+            form: $('#radio-search-form'),
+            query: $('#radio-query'),
+            country: $('#radio-country'),
+            tag: $('#radio-tag'),
+            limit: $('#radio-limit'),
+            status: $('#radio-status'),
+            results: $('#radio-results'),
+            favorites: $('#radio-favorites'),
+            player: $('#radio-player'),
+            nowPlaying: $('#radio-now-playing'),
+            nowPlayingMeta: $('#radio-now-playing-meta'),
+            nowPlayingIcon: $('#radio-now-playing-icon'),
+            stop: $('#radio-stop'),
+            volume: $('#radio-volume')
+          };
+        
+          function escapeHTML(value = '') {
+            return String(value).replace(/[&<>'"]/g, (char) => ({
+              '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[char]));
+          }
+        
+          function getCurrentServer() {
+            return config.apiServers[state.serverIndex % config.apiServers.length];
+          }
+        
+          async function apiRequest(path, params = {}) {
+            const query = new URLSearchParams(params);
+            const url = `${getCurrentServer()}${path}?${query.toString()}`;
+            const response = await fetch(url, {
+              headers: { Accept: 'application/json', 'User-Agent': config.appName },
+              signal: state.searchAbortController?.signal
+            });
+            if (!response.ok) throw new Error(`API HTTP ${response.status}`);
+            return response.json();
+          }
+        
+          async function searchStations(event) {
+            event?.preventDefault();
+            state.searchAbortController?.abort();
+            state.searchAbortController = new AbortController();
+            setStatus('A pesquisar estações…');
+        
+            const params = {
+              name: els.query.value.trim(),
+              countrycode: els.country.value.trim().toUpperCase(),
+              tag: els.tag.value.trim(),
+              order: 'clickcount',
+              reverse: 'true',
+              hidebroken: 'true',
+              limit: els.limit.value
+            };
+            Object.keys(params).forEach((key) => {
+              if (params[key] === '') delete params[key];
+            });
+        
+            try {
+              const stations = await apiRequest('/json/stations/search', params);
+              state.stations = stations.filter((station) => station.url_resolved || station.url);
+              renderStations();
+              setStatus(`${state.stations.length} estação(ões) encontrada(s).`);
+            } catch (error) {
+              if (error.name === 'AbortError') return;
+              state.serverIndex += 1;
+              if (state.serverIndex < config.apiServers.length) {
+                setStatus('Servidor indisponível. A tentar outro servidor…');
+                return searchStations();
+              }
+              setStatus('Não foi possível consultar a Radio Browser. Verifique a ligação e tente novamente.', true);
+            }
+          }
+        
+          function stationCard(station, isFavorite = false) {
+            const title = escapeHTML(station.name || 'Estação sem nome');
+            const tags = escapeHTML(station.tags || 'Sem género informado');
+            const country = escapeHTML(station.countrycode || station.country || '');
+            const icon = station.favicon ? escapeHTML(station.favicon) : '';
+            const isStartup = state.startupRadio === station.stationuuid;
+            
+            return `<article class="radio-card">
+              <div class="radio-card-icon">${icon ? `<img src="${icon}" alt="" loading="lazy" onerror="this.style.display='none'">` : '<i class="ph-bold ph-music-note"></i>'}</div>
+              <div class="radio-card-content">
+                <h3 title="${title}">${title}</h3>
+                <p>${country}${country && tags ? ' · ' : ''}${tags}</p>
+                <small>${escapeHTML(station.codec || 'Áudio')} ${station.bitrate ? `· ${station.bitrate} kbps` : ''}</small>
+              </div>
+              <div class="radio-card-actions">
+                <button class="button btn-primary" style="min-height: auto;" data-play="${escapeHTML(station.stationuuid)}">Ouvir</button>
+                <button class="button" style="min-height: auto; min-width: auto; padding: .4rem; background: transparent; color: var(--warning); border: none;" title="${isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}" aria-label="Favorito" data-favorite="${escapeHTML(station.stationuuid)}">${isFavorite ? '<i class="ph-fill ph-star"></i>' : '<i class="ph-bold ph-star"></i>'}</button>
+                <button class="button" style="min-height: auto; min-width: auto; padding: .4rem; background: transparent; color: var(--success); border: none;" title="${isStartup ? 'Remover Rádio Inicial' : 'Definir Rádio Inicial'}" aria-label="Startup" data-startup="${escapeHTML(station.stationuuid)}">${isStartup ? '<i class="ph-fill ph-push-pin" style="filter: drop-shadow(0 0 5px var(--success));"></i>' : '<i class="ph-bold ph-push-pin"></i>'}</button>
+              </div>
+            </article>`;
+          }
+        
+          function renderStations() {
+            els.results.innerHTML = state.stations.length
+              ? state.stations.map((station) => stationCard(station, isFavorite(station.stationuuid))).join('')
+              : '<p class="radio-empty-state">Nenhuma estação encontrada.</p>';
+          }
+        
+          function renderFavorites() {
+            els.favorites.innerHTML = state.favorites.length
+              ? state.favorites.map((station) => stationCard(station, true)).join('')
+              : '<p class="radio-empty-state">Ainda não tem favoritos.</p>';
+          }
+        
+          function isFavorite(uuid) {
+            return state.favorites.some((station) => station.stationuuid === uuid);
+          }
+        
+          function toggleFavorite(uuid) {
+            const station = [...state.stations, ...state.favorites].find((item) => item.stationuuid === uuid);
+            if (!station) return;
+            state.favorites = isFavorite(uuid)
+              ? state.favorites.filter((item) => item.stationuuid !== uuid)
+              : [...state.favorites, station];
+            localStorage.setItem('radioFavorites', JSON.stringify(state.favorites));
+            renderStations();
+            renderFavorites();
+          }
+          
+          function toggleStartup(uuid) {
+            if (state.startupRadio === uuid) {
+                state.startupRadio = null;
+                localStorage.removeItem('radioStartup');
+            } else {
+                state.startupRadio = uuid;
+                localStorage.setItem('radioStartup', uuid);
+                // Se o usuário define uma rádio de inicialização nova, ligamos o Autoplay logicamente
+                state.autoPlayEnabled = true;
+                localStorage.setItem('radioAutoPlay', 'true');
+            }
+            renderStations();
+            renderFavorites();
+          }
+        
+          async function playStation(uuid) {
+            const station = [...state.stations, ...state.favorites].find((item) => item.stationuuid === uuid);
+            if (!station) return;
+            const streamUrl = station.url_resolved || station.url;
+            state.current = station;
+            els.player.src = streamUrl;
+            els.nowPlaying.textContent = station.name || 'A reproduzir';
+            els.nowPlayingMeta.textContent = `${station.countrycode || ''}${station.codec ? ` · ${station.codec}` : ''}`;
+            els.nowPlayingIcon.src = station.favicon || '';
+            els.nowPlayingIcon.alt = station.name || '';
+            try {
+              fetch(`${getCurrentServer()}/json/url/${encodeURIComponent(uuid)}`, { headers: { 'User-Agent': config.appName } }).catch(() => {});
+              await els.player.play();
+              setStatus(`A reproduzir: ${station.name}`);
+              
+              /* ATUALIZA O BOTAO NO MENU SUPERIOR DO VICE FINANCE PARA INDICAR RADIO TOCANDO */
+              const btnIcon = document.getElementById('radioBtnIcon');
+              const btnText = document.getElementById('radioBtnText');
+              if(btnIcon) btnIcon.className = 'ph-fill ph-speaker-high radio-playing-icon';
+              if(btnText) btnText.innerText = 'Tocando...';
+
+              /* SALVA NO LOCALSTORAGE QUE A RADIO ESTÁ ATIVA NESTA SESSÃO */
+              state.autoPlayEnabled = true;
+              localStorage.setItem('radioAutoPlay', 'true');
+
+            } catch (error) {
+              setStatus('O navegador bloqueou a reprodução automática. Clique novamente em “Ouvir”.', true);
+            }
+          }
+          
+          async function playStartupRadio() {
+            // Só executa se o autoplay estiver ativado, se tiver uma rádio salva, e se não tocou ainda
+            if (!state.startupRadio || state.startupPlayed || state.current || !state.autoPlayEnabled) {
+                state.startupPlayed = true; 
+                return;
+            }
+            
+            try {
+                let station = [...state.stations, ...state.favorites].find(s => s.stationuuid === state.startupRadio);
+                if (!station) {
+                    const res = await apiRequest('/json/stations/byuuid', { uuids: state.startupRadio });
+                    if (res && res.length > 0) {
+                        station = res[0];
+                        state.stations.push(station);
+                    }
+                }
+                
+                if (station) {
+                    await playStation(station.stationuuid);
+                    state.startupPlayed = true;
+                }
+            } catch (e) {
+                console.warn('Autoplay bloqueado pelo navegador. Aguardando interação na tela...', e);
+            }
+          }
+        
+          function stopStation(event) {
+            if(event) {
+                event.preventDefault();
+                event.stopPropagation(); /* CRÍTICO: Impede que o clique suba para o document e force o reinício */
+            }
+
+            els.player.pause();
+            els.player.removeAttribute('src');
+            els.player.load();
+            state.current = null;
+            els.nowPlaying.textContent = 'Nenhuma estação selecionada';
+            els.nowPlayingMeta.textContent = '';
+            els.nowPlayingIcon.removeAttribute('src');
+
+            /* RETORNA O BOTAO DO VICE FINANCE PARA O ESTADO ORIGINAL */
+            const btnIcon = document.getElementById('radioBtnIcon');
+            const btnText = document.getElementById('radioBtnText');
+            if(btnIcon) btnIcon.className = 'ph-bold ph-radio';
+            if(btnText) btnText.innerText = 'Rádio';
+
+            /* SALVA NO LOCALSTORAGE QUE O USUÁRIO DECIDIU PAUSAR A RÁDIO */
+            state.autoPlayEnabled = false;
+            localStorage.setItem('radioAutoPlay', 'false');
+            state.startupPlayed = true; /* Sinaliza como resolvido para não tentar tocar de novo até que ele clique no play */
+          }
+        
+          document.addEventListener('click', (event) => {
+            const playButton = event.target.closest('[data-play]');
+            const favoriteButton = event.target.closest('[data-favorite]');
+            const startupButton = event.target.closest('[data-startup]');
+            
+            if (playButton) {
+                state.startupPlayed = true;
+                playStation(playButton.dataset.play);
+            }
+            if (favoriteButton) toggleFavorite(favoriteButton.dataset.favorite);
+            if (startupButton) toggleStartup(startupButton.dataset.startup);
+            
+            /* Gatilho invisível (Respeitando a regra do autoPlayEnabled) */
+            if (!state.startupPlayed && !playButton && state.startupRadio && state.autoPlayEnabled) {
+                playStartupRadio();
+            }
+          });
+        
+          els.form.addEventListener('submit', searchStations);
+          els.stop.addEventListener('click', stopStation); /* Listener de parada referenciando a nova função modificada */
+          els.volume.addEventListener('input', () => { els.player.volume = Number(els.volume.value); });
+        
+          els.query.value = '';
+          els.tag.value = config.defaultTag;
+          els.country.value = config.defaultCountryCode;
+          els.player.volume = Number(els.volume.value);
+          renderFavorites();
+          searchStations();
+          
+          /* Tenta tocar imediatamente ao acessar a página */
+          setTimeout(playStartupRadio, 1500);
         })();
     </script>
 </body>
