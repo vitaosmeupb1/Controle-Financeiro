@@ -3110,7 +3110,7 @@
             stations: [],
             favorites: JSON.parse(localStorage.getItem('radioFavorites') || '[]'),
             startupRadio: localStorage.getItem('radioStartup') || null,
-            autoPlayEnabled: localStorage.getItem('radioAutoPlay') !== 'false', // VERIFICA O ULTIMO ESTADO (padrão true se existir uma rádio fixada)
+            autoPlayEnabled: localStorage.getItem('radioAutoPlay') !== 'false',
             startupPlayed: false,
             current: null,
             serverIndex: 0,
@@ -3139,6 +3139,13 @@
             return String(value).replace(/[&<>'"]/g, (char) => ({
               '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
             }[char]));
+          }
+        
+          /* 1. CORREÇÃO DA FUNÇÃO QUE SUMIU OU FOI DIGITADA ERRADA NO SEU CÓDIGO */
+          function setStatus(message, isError = false) {
+            if(!els.status) return;
+            els.status.textContent = message;
+            els.status.classList.toggle('is-error', isError);
           }
         
           function getCurrentServer() {
@@ -3177,9 +3184,21 @@
         
             try {
               const stations = await apiRequest('/json/stations/search', params);
-              state.stations = stations.filter((station) => station.url_resolved || station.url);
+              
+              /* 2. CORREÇÃO PARA O GITHUB PAGES: Permitir apenas rádios com HTTPS */
+              state.stations = stations.filter((station) => {
+                  const streamUrl = station.url_resolved || station.url;
+                  return streamUrl && streamUrl.startsWith('https://');
+              });
+              
               renderStations();
-              setStatus(`${state.stations.length} estação(ões) encontrada(s).`);
+              
+              if(state.stations.length === 0 && stations.length > 0) {
+                  setStatus(`Foram encontradas rádios, mas o GitHub bloqueou por não serem seguras (HTTP).`, true);
+              } else {
+                  setStatus(`${state.stations.length} estação(ões) encontrada(s).`);
+              }
+
             } catch (error) {
               if (error.name === 'AbortError') return;
               state.serverIndex += 1;
@@ -3187,7 +3206,7 @@
                 setStatus('Servidor indisponível. A tentar outro servidor…');
                 return searchStations();
               }
-              setStatus('Não foi possível consultar a Radio Browser. Verifique a ligação e tente novamente.', true);
+              setStatus('A conexão com a API falhou. Verifique a internet ou pause seu AdBlock.', true);
             }
           }
         
@@ -3247,7 +3266,6 @@
             } else {
                 state.startupRadio = uuid;
                 localStorage.setItem('radioStartup', uuid);
-                // Se o usuário define uma rádio de inicialização nova, ligamos o Autoplay logicamente
                 state.autoPlayEnabled = true;
                 localStorage.setItem('radioAutoPlay', 'true');
             }
@@ -3270,13 +3288,11 @@
               await els.player.play();
               setStatus(`A reproduzir: ${station.name}`);
               
-              /* ATUALIZA O BOTAO NO MENU SUPERIOR DO VICE FINANCE PARA INDICAR RADIO TOCANDO */
               const btnIcon = document.getElementById('radioBtnIcon');
               const btnText = document.getElementById('radioBtnText');
               if(btnIcon) btnIcon.className = 'ph-fill ph-speaker-high radio-playing-icon';
               if(btnText) btnText.innerText = 'Tocando...';
 
-              /* SALVA NO LOCALSTORAGE QUE A RADIO ESTÁ ATIVA NESTA SESSÃO */
               state.autoPlayEnabled = true;
               localStorage.setItem('radioAutoPlay', 'true');
 
@@ -3286,7 +3302,6 @@
           }
           
           async function playStartupRadio() {
-            // Só executa se o autoplay estiver ativado, se tiver uma rádio salva, e se não tocou ainda
             if (!state.startupRadio || state.startupPlayed || state.current || !state.autoPlayEnabled) {
                 state.startupPlayed = true; 
                 return;
@@ -3314,7 +3329,7 @@
           function stopStation(event) {
             if(event) {
                 event.preventDefault();
-                event.stopPropagation(); /* CRÍTICO: Impede que o clique suba para o document e force o reinício */
+                event.stopPropagation(); 
             }
 
             els.player.pause();
@@ -3325,16 +3340,14 @@
             els.nowPlayingMeta.textContent = '';
             els.nowPlayingIcon.removeAttribute('src');
 
-            /* RETORNA O BOTAO DO VICE FINANCE PARA O ESTADO ORIGINAL */
             const btnIcon = document.getElementById('radioBtnIcon');
             const btnText = document.getElementById('radioBtnText');
             if(btnIcon) btnIcon.className = 'ph-bold ph-radio';
             if(btnText) btnText.innerText = 'Rádio';
 
-            /* SALVA NO LOCALSTORAGE QUE O USUÁRIO DECIDIU PAUSAR A RÁDIO */
             state.autoPlayEnabled = false;
             localStorage.setItem('radioAutoPlay', 'false');
-            state.startupPlayed = true; /* Sinaliza como resolvido para não tentar tocar de novo até que ele clique no play */
+            state.startupPlayed = true; 
           }
         
           document.addEventListener('click', (event) => {
@@ -3349,14 +3362,13 @@
             if (favoriteButton) toggleFavorite(favoriteButton.dataset.favorite);
             if (startupButton) toggleStartup(startupButton.dataset.startup);
             
-            /* Gatilho invisível (Respeitando a regra do autoPlayEnabled) */
             if (!state.startupPlayed && !playButton && state.startupRadio && state.autoPlayEnabled) {
                 playStartupRadio();
             }
           });
         
           els.form.addEventListener('submit', searchStations);
-          els.stop.addEventListener('click', stopStation); /* Listener de parada referenciando a nova função modificada */
+          els.stop.addEventListener('click', stopStation);
           els.volume.addEventListener('input', () => { els.player.volume = Number(els.volume.value); });
         
           els.query.value = '';
@@ -3366,7 +3378,6 @@
           renderFavorites();
           searchStations();
           
-          /* Tenta tocar imediatamente ao acessar a página */
           setTimeout(playStartupRadio, 1500);
         })();
     </script>
