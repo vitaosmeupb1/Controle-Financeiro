@@ -2,8 +2,30 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Vice Finance - GTA VI Edition</title>
+    
+    <meta name="theme-color" content="#120a1c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Vice Finance">
+    <link rel="apple-touch-icon" href="icon.png">
+    
+    <link id="manifest-link" rel="manifest">
+    <script>
+        const manifest = {
+            name: "Vice Finance - GTA VI Edition",
+            short_name: "Vice Finance",
+            start_url: window.location.href,
+            display: "fullscreen", 
+            background_color: "#120a1c",
+            theme_color: "#120a1c", 
+            icons: [{ src: "icon.png", sizes: "192x192 512x512", type: "image/png", purpose: "any maskable" }]
+        };
+        const manifestStr = encodeURIComponent(JSON.stringify(manifest));
+        document.getElementById('manifest-link').setAttribute('href', 'data:application/json;charset=utf-8,' + manifestStr);
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
@@ -1127,6 +1149,19 @@
     </style>
 </head>
 <body data-theme="dark" class="view-all">
+    <script>
+        if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.getRegistrations().then(regs => {
+                    if (regs.length === 0) {
+                        const swCode = "self.addEventListener('install', e => self.skipWaiting()); self.addEventListener('activate', e => e.waitUntil(self.clients.claim())); self.addEventListener('fetch', e => {});";
+                        const blob = new Blob([swCode], { type: 'application/javascript' });
+                        navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(console.error);
+                    }
+                });
+            });
+        }
+    </script>
 
     <div id="gta-loader">
         <div class="loader-content">
